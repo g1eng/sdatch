@@ -2,10 +2,9 @@
 [![CircleCI](https://circleci.com/gh/g1eng/sdatch/tree/master.svg?style=svg&circle-token=78cdb6d25075d986cefac72fa3cae880d5824534)](https://circleci.com/gh/g1eng/sdatch/tree/master)
 
 <img src="https://raw.githubusercontent.com/g1eng/sdatch/master/assets/images/logo-tiny.png" />
+d3 wrapper for casual data visualization
 
-sdatch.js is a d3 wrapper for casual data visualization. 
-
-# Status
+## Status
 
 v0.1.0 (**alpha release**), the npm package is available on npmjs.com.
 
@@ -151,12 +150,16 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 
 # Develop
 
+### Environment
+
 * VSCode or WebStorm are recommended for editors.
 * `npm run bundle` for make new bundle in `dist` dir.
 * before `npm run test`, run `./replace_nyc.sh` to replace native coverage tool from nyc to c8. (dirty hack)
 
+### Testing on Containers
+
 `docker-compose` is convenient to check e2e behavior of bundled script.
-For local testing, try to run `docker-compose up` and try to access to `localhost:8080`.
+For local tests, try to run `docker-compose up` and access to `localhost:8080`.
 
 # Miscellaneous
 
@@ -168,6 +171,10 @@ The optimized script is put under `dist` directory, and it is built and bundled 
 All UMD compatible stacks (V8, Spidermonkey, etc.) are supported with babel-loader (based on babel-7.14.x).
 
 If you know there is corrupted behavior for the library on any browsers and if you think it should work, please make issues, thanks.
+
+# Known problems
+
+Many. Please wait for days to report all known issues.
 
 # Contact
 

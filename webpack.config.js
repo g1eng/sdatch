@@ -8,7 +8,7 @@ export default {
         },
     },
     optimization: {
-        minimize: false
+        minimize: true
     },
     mode: "development",
     watchOptions: {
