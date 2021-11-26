@@ -152,7 +152,7 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 ### Environment
 
 * VSCode or WebStorm are recommended for editors.
-* `npm run bundle` for make new bundle in `dist` dir.
+* `npm run bundle` to make new bundle in `dist` dir.
 * before `npm run test`, run `./replace_nyc.sh` to replace native coverage tool from nyc to c8. (dirty hack)
 
 ### Testing on Containers
