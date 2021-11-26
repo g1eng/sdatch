@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sdatch demo</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <style>
+        body{ background: #111; }
+        .bg-dark {
+            background: #fee !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid row">
+    <div class="card col-sm-1 col-md-2 col-lg-3 bg-dark"><div id="p1" class="card-body"></div></div>
+    <div class="card col-sm-1 col-md-2 col-lg-3 bg-dark"><div id="p2" class="card-body"></div></div>
+    <div class="card col-sm-1 col-md-2 col-lg-3 bg-dark"><div id="p3" class="card-body"></div></div>
+    <div class="card col-sm-1 col-md-2 col-lg-3 bg-dark"><div id="p4" class="card-body"></div></div>
+    <div class="card col-sm-1 col-md-2 col-lg-3 bg-dark"><div id="p5" class="card-body"></div></div>
+    <div class="card col-sm-1 col-md-2 col-lg-3 bg-dark"><div id="p6" class="card-body"></div></div>
+    <div class="card col-sm-1 col-md-2 col-lg-3 bg-dark"><div id="p7" class="card-body"></div></div>
+    <div class="card col-sm-1 col-md-2 col-lg-3 bg-dark"><div id="p8" class="card-body"></div></div>
+</div>
+</body>
+
+<script type="text/javascript" src="../dist/sdatch.js"></script>
+<script type="text/javascript">
+
+    let svg1 = sdatch.getFigureCore("p1", 300, 300)
+    let svg2 = sdatch.getFigureCore("p2", 300, 300)
+    let svg7 = sdatch.getFigureCore("p7", 300, 300)
+    // console.log(svg1)
+
+    let l = new sdatch.Line({
+        column: ["a", "b", "c", "d", "e"],
+        data: [2, 1, 1, 3, 2],
+        id: "p12",
+        svg: { body: svg1},
+        area: {
+            x: 270,
+            y: 80,
+        },
+        focus: true,
+        axe: {
+            x: true,
+            right: true,
+        },
+        color: {
+            fill: "orange"
+        },
+    }).render().setLabel()
+
+    let b = new sdatch.Bar({
+        id: "korebar",
+        column: ["Google", "Apple", "Microsoft", "Meta", "Amazon"],
+        data: [214, 45, 134, 270, 157],
+        area: {
+            x: 250,
+            y: 150,
+        },
+        svg: {
+            id: "svg1",
+            body: svg1
+        },
+        margin: {
+            top: 50,
+        },
+        animation: false,
+        ticks: { x: {inner: true}, y:{ inner: true, values: [50, 100, 150, 200, 250] }},
+        axe: {
+            x: true,
+            right: true,
+        },
+        color: {
+            fill: function(d){
+                return `rgb(${d*2},${d*0.5},${200-d})`
+            },
+            axe: "#111",
+            axeText: "#355"
+        },
+        font: {size: 12},
+        label: { rotate: true},
+        fade: {
+            area: {
+                accentColor: "orange"
+            }
+        }
+    }).render().setLabel(true).setTransition()
+
+    setTimeout(()=>{
+        l.updateData([3,1,2,1,5])
+        b.updateData([150,198,160,95,122])
+    },2000)
+
+    let p = new sdatch.Plot({
+        data: [[1,2], [3,4], [4,5], [5,7], [7,2]],
+        id: "p2",
+        svg: {
+            id: "plot_sample",
+            body: svg2
+        },
+        area:{
+            x: 200,
+            y: 200
+        },
+        ticks: {
+            x: {values: [0,1,2,3,5,8]},
+            y: {inner: true}
+        },
+        animation: false,
+        font: {
+            size: 12
+        },
+        axe: {
+            x: true,
+            right: true
+        },
+        label: { rotate: true },
+        color: {
+            fill: "red"
+        }
+    }).render().setLabel(true).setTransition()
+
+
+    setTimeout(()=>{
+        p.updateData([
+            [3,2],
+            [5,6],
+            [3.3,4.1],
+            [1.9,2.2],
+            [7.5,2.8],
+        ])
+    },3000)
+
+    let ss = sdatch.createFigure("p3", 500,300)
+
+    ss.addLayer([
+        {
+            id: "arebar",
+            type: "bar",
+            // column: ["one", "tow", "tree", "for", "hive"],
+            data: [2, 4, 14, 7, 7, 20, 15],
+            area: {
+                x: 300,
+                y: 140,
+            },
+            margin: {
+                top: 120,
+                left: 0
+            },
+            axe: {
+                x: true,
+                right: true,
+            },
+            color: {
+                fill: "#5f8",
+                axe: "#111",
+                axeText: "#ddd"
+            },
+            // ticks: {y: {inner: true}},
+            label: {rotate: true},
+            fade: {
+                area: {
+                    accentColor: "#1ad"
+                }
+            }
+        },
+        {
+            data: [23000, 14500, 15050, 22700, 25503, 23431, 19989],
+            id: "p32",
+            type: "line",
+            rel: "arebar",
+            area: {
+                x: 300,
+                y: 150,
+            },
+            smooth: true,
+            margin: {
+                top: 0,
+                right: 20
+            },
+            axe: {
+                x: true,
+                y: true
+            },
+            animation: false,
+            color: {
+                fill: "orange",
+                stroke: "red"
+            },
+            focus: true,
+            font: {
+                size: 12
+            },
+            plot: false
+        }
+    ])
+    ss.renderAll()
+    setTimeout(()=>{
+        ss.layer.p32.updateData([15000,16500,18900,22100,19800,17580, 21220])
+    },4000)
+
+
+    let sta = sdatch.createFigure("p4", 300,300)
+    sta.addLayer([
+        {
+            id: "line-big",
+            type: "line",
+            column: [1020,1292,1319,1235],
+            data: [2008,2005,2001,1994],
+            focus: {
+                x: [800,1400],
+                y: [1990,2010]
+            },
+            color: {
+                fill: "orange"
+            },
+        },{
+            id: "bub2",
+            type: "bubble",
+            data: [[120,23,7],[315,5,3],[411,6,2],[177,-34,4.6]],
+            area: {
+                x: 300,
+                y: 200,
+                // radius: 30
+            },
+            animation: false,
+            ticks: { y: {inner: true}},
+            axe: {
+                x: true,
+                y: true,
+            },
+            focus: true,
+            color: {
+                fill: "blue"
+            },
+    }]).renderAll()
+
+    setTimeout(()=>{
+        sta.layer["line-big"].updateData([2006,2003,2004,2008])
+    },5000)
+    setTimeout(()=>{
+        sta.layer["bub2"].updateData([[101,21,6],[275,25,4],[371,10,7],[407,-24,3.6]])
+    },6000)
+
+
+    let sp5 = sdatch.createFigure("p5", 300,300)
+    sp5.addLayer({
+        id: "p5area",
+        type: "area",
+        column: ["a","b","c","d","e","f","g"],
+        data: [23000, 14500, 15050, 22700, 25503, 23431, 19989],
+        axe: {
+            x: true,
+            y: true,
+        },
+        animation: false,
+        smooth: true,
+        color: {
+            stroke: "purple",
+            fill: "purple"
+        },
+    }).renderAll()
+    setTimeout(()=>{
+        console.log(sp5)
+        sp5.layer.p5area.updateData([15000,16500,18900,22100,19800,17580, 21220])
+    },5000)
+
+
+    let sp6 = sdatch.createFigure("p6", 300,300)
+    sp6.addLayer([{
+        type: "pie",
+        column: ["liberty", "power", "wise", "humor", "commune", "unity", "passion", "thought", "other"],
+        data: [23, 10, 15, 30, 8, 12, 15 , 22, 18],
+        id: "p61",
+        radius: 100,
+        innerRadius: 80,
+        area: {
+            x: 300,
+            y: 200,
+        },
+    },{
+        type: "pie",
+        column: ["liberty", "power", "wise", "humor", "commune", "unity", "passion", "thought", "other"],
+        data: [21, 12, 11, 27, 10, 9, 10 , 21, 13],
+        margin: {
+            top: 30,
+            left: 30
+        },
+        id: "p62",
+        animation: false,
+        radius: 70,
+        innerRadius: 50,
+        radStart: Math.PI / 2,
+        radEnd: Math.PI * 3 / 2,
+        clockwise: false
+    }]).renderAll()
+
+    fetch("https://geoshapes.tanban.org/api/city/list/code/12").then(r => r.json().then((j)=>{
+        let uriArray = []
+        for(let i in j){
+            if(!(i<12200 && i>12100))
+                uriArray.push("api/topojson/" + i + ".topojson")
+        }
+
+        let g = new sdatch.Geo({
+            src: uriArray,
+            column: [12100, 12201, 12202, 12203, 12204],
+            data: [523, 15, 3, 33, 150],
+            label: {
+                prefix: "Sample: ",
+                properties: ["N03_003", "N03_004"]
+            },
+            location: [140.5,35.48],
+            zoom: 8,
+            id: "p7",
+            svg: { id: "geo", body: svg7 },
+            color: {
+                fill: function(f) {
+                    const d = f.properties.datum,
+                        getNormalColor = () => `rgb(${200 + d/3}, ${155 - d/2}, 50)`,
+                        getEmergentColor = () => `rgb(${250 + (300-d) / 2}, 0, ${(d-500)^2/1500})`
+                    if(d===0) return "green"
+                    else if(d<100) return getNormalColor()
+                    else if(d>=100) return getEmergentColor()
+                    else return "rgba(0,0,0,0)"
+                }
+            },
+        }).render()
+
+        setTimeout(()=>{
+            g.updateData([23, 115, 23, 433, 550])
+        },3000)
+        setTimeout(()=>{
+            g.updateData([123, 115, 23, 433, 550])
+        },5000)
+        setTimeout(()=>{
+            g.updateData([523, 115, 23, 433, 550])
+        },8000)
+
+    }))
+
+
+    let sp8 = sdatch.createFigure("p8", 300,300)
+    function getWave(radStart=0){
+        ds = 0.30
+        data = []
+
+        for(let i=0;i<100;i++)
+            data.push(Math.sin(radStart + ds * i))
+            return data
+    }
+    sp8.addLayer([
+        {
+            id: "wave",
+            type: "line",
+            smooth: true,
+            data: getWave(),
+            focus: false,
+            area: {y: 100},
+            ticks: { x: {inner: true, values: [10,20,30,40,50,60,70,80]}, y:{ inner: true, values: [-2,-1,0,1,2]} },
+            color: {
+                stroke: "orange"
+            },
+            axe: { x:true, y: true},
+            plot: false
+        }
+    ]).renderAll()
+
+
+    setTimeout(()=>{
+        let dt = 0.05, count = 1
+        const update = ()=>{
+            sp8.layer.wave.updateData(
+                getWave(count++ * dt)
+            )
+            if(count < 5) 
+                setTimeout(
+                    update, 100
+                )
+        }
+        update()
+    }, 5000)
+
+
+
+
+</script>
+</html>
+

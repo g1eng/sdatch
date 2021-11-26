@@ -1,0 +1,7 @@
+allow-uncaunght: false
+extension: ["js"]
+package: ./package.json
+reporter:
+  - "spec"
+ui: "bdd"
+require: "jsdom-global/register"

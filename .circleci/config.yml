@@ -1,0 +1,43 @@
+version: 2.1
+executors:
+  node-default:
+    docker:
+      - image: cimg/node:16.6.0
+
+jobs:
+  test:
+    executor: node-default
+
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: npm install && npm install --save-dev
+      - run:
+          name: run test
+          command: npm run test
+      - run:
+          name: replace nyc by c8
+          command: ./replace_nyc.sh
+      - run:
+          name: get coverage report
+          command: npm run coverage
+      - store_artifacts:
+          path: coverage
+      - run:
+          name: uploade coverage to codecov
+          command: |
+                  curl -Os https://uploader.codecov.io/latest/linux/codecov
+                  curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+                  curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+                  curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --import
+                  gpg --verify codecov.SHA256SUM.sig codecov.SHA256SUM
+                  shasum -a 256 -c codecov.SHA256SUM
+                  chmod +x codecov
+                  ./codecov -t $CODECOV_TOKEN
+
+
+workflows:
+  test-and-report:
+    jobs: 
+      - test

@@ -1,0 +1,11 @@
+.idea
+.nyc_output
+node_modules
+coverage
+demo/api
+demo/bootstrap.min.css*
+demo/bootstrap.min.js*
+.*.swp
+.*.swo
+*~
+yarn-error.log

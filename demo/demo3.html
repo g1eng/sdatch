@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>sample</title></head>
+<body>
+<div id="sample-fig"></div>
+</body>
+<script type="text/javascript" src="sdatch.js"></script>
+<script type="text/javascript">
+    const data = [1, 2, 3, 4, 5], width = 411, height = 200
+    let fig = sdatch.createFigure("sample-fig", width, height)
+    fig.addLayer({
+        id: "layer2", type: "bar",
+        data: data, axe: {y: true}, label: true,
+        area: {x: 250, y: 180},
+        color: {
+            textBackground: "gray"
+        }
+    })
+    fig.renderAll()
+</script>
+</html>
