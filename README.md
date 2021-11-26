@@ -1,8 +1,9 @@
 [![codecov](https://codecov.io/gh/g1eng/sdatch/branch/master/graph/badge.svg?token=mJQz4bRmsm)](https://codecov.io/gh/g1eng/sdatch)
 [![CircleCI](https://circleci.com/gh/g1eng/sdatch/tree/master.svg?style=svg&circle-token=78cdb6d25075d986cefac72fa3cae880d5824534)](https://circleci.com/gh/g1eng/sdatch/tree/master)
-[![logo]](/assets/images/logo-tiny.png)
 
-sdatch.js (statical data-chart) is a d3 wrapper for casual data visualization. 
+<img src="https://raw.githubusercontent.com/g1eng/sdatch/master/assets/images/logo-tiny.png" />
+
+sdatch.js is a d3 wrapper for casual data visualization. 
 
 # Status
 
@@ -155,6 +156,7 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 * before `npm run test`, run `./replace_nyc.sh` to replace native coverage tool from nyc to c8. (dirty hack)
 
 `docker-compose` is convenient to check e2e behavior of bundled script.
+For local testing, try to run `docker-compose up` and try to access to `localhost:8080`.
 
 # Miscellaneous
 
@@ -174,4 +176,4 @@ make issues or PR, thanks.
 # Special Thanks
 
 [D3](https://github.com/d3/d3) is excellent library by [Mike Bostock](https://github.com/mbostock). This library is perfectly depends on his works. Thanks a lot Mr. Bostock! 
-His library [d3](https://github.com/d3/d3) and its module is licensed under [ISC](D3_LICENSE). If you use this library, please include both of his [ISC license](/D3_LICENSE) and the license of [this project](/LICENSE).
+His library [d3](https://github.com/d3/d3) and its module is licensed under [ISC](D3_LICENSE). If you use this library, please include both of his [ISC license](https://github.com/d3/d3/blob/main/LICENSE) and the license of [this project](https://github.com/g1eng/sdatch/blob/master/LICENSE).
