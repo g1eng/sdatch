@@ -1,7 +1,7 @@
 /**
  * *
  */
-export type LayerClass = Layer | Bar | Line | Plot | Bubble | Pie | any;
+export type LayerClass = Layer | Bar | Line | Plot | Bubble | Pie | Geo;
 /**
  * *
  * Margin object consists of top and left margin numbers
@@ -368,3 +368,4 @@ import { Line } from "./layer/index.js";
 import { Plot } from "./layer/index.js";
 import { Bubble } from "./layer/index.js";
 import { Pie } from "./layer/index.js";
+import { Geo } from "./layer/index.js";
