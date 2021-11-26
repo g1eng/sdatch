@@ -1,4 +1,4 @@
 codecov:
-  token: e8e3603a-0271-4462-b99e-31b444aabb7a
+  token: 26b916a0-cafd-47f8-93e3-41bd03096ecf
   ci:
     - circleci

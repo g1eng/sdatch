@@ -1,6 +1,6 @@
-[![CircleCI](https://circleci.com/gh/g1eng/sdatch/tree/master.svg?style=svg&circle-token=78cdb6d25075d986cefac72fa3cae880d5824534)](https://circleci.com/gh/g1eng/sdatch-poc/tree/master)
-[![codecov](https://codecov.io/gh/g1eng/sdatch/branch/master/graph/badge.svg?token=FUJu7MDJIp)](https://codecov.io/gh/g1eng/sdatch-poc)
-[![logo img]](/assets/images/logo-small.png)
+[![codecov](https://codecov.io/gh/g1eng/sdatch/branch/master/graph/badge.svg?token=mJQz4bRmsm)](https://codecov.io/gh/g1eng/sdatch)
+[![CircleCI](https://circleci.com/gh/g1eng/sdatch/tree/master.svg?style=svg&circle-token=78cdb6d25075d986cefac72fa3cae880d5824534)](https://circleci.com/gh/g1eng/sdatch/tree/master)
+[![logoimg]](/assets/images/logo-small.png)
 
 sdatch.js (statical data-chart) is a d3 wrapper for casual data visualization. 
 
