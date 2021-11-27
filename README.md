@@ -5,7 +5,7 @@
 
 ## Status
 
-v0.1.0 (**alpha release**), the npm package is available on npmjs.com.
+v0.1.0 (**alpha release**), the npm package is available.
 
 The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure on [here](#Develop)).
 
@@ -15,7 +15,7 @@ The static bundle file is not supplied at now. If you want to get a prebuilt sta
 * Easy layer generation with sdatch class and related functions such as `createFigure` and `addLayer`.
 * Additional layer operation via method chain syntax, such as `obj.setLabel().setTransition()`.
 
-See also out [design concept](#core-concept).
+See also our [design concept](#core-concept).
 
 # Download and Install
 
@@ -155,11 +155,11 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 
 * VSCode or WebStorm are recommended for editors.
 * `npm run bundle` to make new bundle in `dist` dir.
-* before `npm run test`, run `./replace_nyc.sh` to replace native coverage tool from nyc to c8. (dirty hack)
+* run `./replace_nyc.sh` before `npm run test`. It replaces native coverage tool from nyc to c8. (dirty hack)
 
 ### Testing on Containers
 
-`docker-compose` is convenient to check e2e behavior of bundled script.
+`docker-compose` is useful to check e2e behavior of bundled script.
 
 ```shell
 docker-compose up -d
