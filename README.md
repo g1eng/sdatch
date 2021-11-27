@@ -163,7 +163,7 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 
 ```shell
 docker-compose up -d
-your-browser localhost:8080
+your-browser http://localhost:8080/demo.html
 ```
 
 # Miscellaneous
