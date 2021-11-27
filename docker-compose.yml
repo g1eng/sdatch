@@ -4,6 +4,7 @@ services:
     image: httpd:alpine
     volumes:
       - ./demo:/usr/local/apache2/htdocs
+      - ./dist:/usr/local/apache2/dist
     ports:
       - "8080:80/tcp"
   tester:
