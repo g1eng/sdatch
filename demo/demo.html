@@ -360,10 +360,10 @@
             smooth: true,
             data: getWave(),
             focus: {
-                x: [0,100],
                 y: [-2,2]
             },
             margin: {
+                left: 30,
                 top: 30,
             },
             area: {
@@ -375,7 +375,7 @@
             },
             axe: { x:true, y: true},
             plot: false,
-
+            safe: false,
         }
     ]).renderAll()
 
