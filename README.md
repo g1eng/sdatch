@@ -188,4 +188,6 @@ make issues or PR, thanks.
 # Special Thanks
 
 [D3](https://github.com/d3/d3) is excellent library by [Mike Bostock](https://github.com/mbostock). This library is perfectly depends on his works. Thanks a lot Mr. Bostock and D3 contributors!! 
-[D3](https://github.com/d3/d3) and its module is licensed under [ISC](D3_LICENSE). If you use this library, please include both of D3's [ISC license](https://github.com/d3/d3/blob/main/LICENSE) and the license of [this project](https://github.com/g1eng/sdatch/blob/master/LICENSE).
+[D3](https://github.com/d3/d3) and its module is licensed under ISC. If you use this library, please include both of D3's [ISC license](https://github.com/d3/d3/blob/main/LICENSE) and the license of [this project](https://github.com/g1eng/sdatch/blob/master/LICENSE).
+
+If you copy and redistribute bundled library in `dist`, don't forget also to copy [its license](dist/sdatch.licenses.txt).

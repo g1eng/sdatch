@@ -59,14 +59,15 @@
         data: [214, 45, 134, 270, 157],
         area: {
             x: 250,
-            y: 150,
+            y: 100,
         },
         svg: {
             id: "svg1",
             body: svg1
         },
         margin: {
-            top: 50,
+            left: 20,
+            top: 100,
         },
         animation: false,
         ticks: { x: {inner: true}, y:{ inner: true, values: [50, 100, 150, 200, 250] }},
@@ -87,7 +88,8 @@
             area: {
                 accentColor: "orange"
             }
-        }
+        },
+        safe: false,
     }).render().setLabel(true).setTransition()
 
     setTimeout(()=>{
