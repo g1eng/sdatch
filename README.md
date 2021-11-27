@@ -5,7 +5,7 @@
 
 ## Status
 
-v0.1.0 (**alpha release**), the npm package is available.
+v0.1.1 (**alpha release**), the npm package is available.
 
 The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure on [here](#Develop)).
 
@@ -188,6 +188,9 @@ make issues or PR, thanks.
 # Special Thanks
 
 [D3](https://github.com/d3/d3) is excellent library by [Mike Bostock](https://github.com/mbostock). This library is perfectly depends on his works. Thanks a lot Mr. Bostock and D3 contributors!! 
-[D3](https://github.com/d3/d3) and its module is licensed under ISC. If you use this library, please include both of D3's [ISC license](https://github.com/d3/d3/blob/main/LICENSE) and the license of [this project](https://github.com/g1eng/sdatch/blob/master/LICENSE).
 
-If you copy and redistribute bundled library in `dist`, don't forget also to copy [its license](dist/sdatch.licenses.txt).
+# License
+
+Sdatch is licensed under [MIT](LICENSE).
+If you copy and redistribute bundled library in `dist`, don't forget also to copy [licenses](dist/sdatch.licenses.txt) for its dependencies.
+
