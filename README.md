@@ -5,15 +5,17 @@
 
 ## Status
 
-v0.1.0 (**alpha release**), the npm package is available on npmjs.com.
+v0.1.0 (**alpha release**), the npm package is available.
 
-The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the process on [here](#Develop)).
+The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure on [here](#Develop)).
 
 # Features
 
 * Simple Layer constructors (e.g. Bar, Plot, Line, etc.) which needs single config object as the argument.
 * Easy layer generation with sdatch class and related functions such as `createFigure` and `addLayer`.
 * Additional layer operation via method chain syntax, such as `obj.setLabel().setTransition()`.
+
+See also our [design concept](#core-concept).
 
 # Download and Install
 
@@ -153,12 +155,16 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 
 * VSCode or WebStorm are recommended for editors.
 * `npm run bundle` to make new bundle in `dist` dir.
-* before `npm run test`, run `./replace_nyc.sh` to replace native coverage tool from nyc to c8. (dirty hack)
+* run `./replace_nyc.sh` before `npm run test`. It replaces native coverage tool from nyc to c8. (dirty hack)
 
 ### Testing on Containers
 
-`docker-compose` is convenient to check e2e behavior of bundled script.
-For local tests, try to run `docker-compose up` and access to `localhost:8080`.
+`docker-compose` is useful to check e2e behavior of bundled script.
+
+```shell
+docker-compose up -d
+your-browser http://localhost:8080/demo.html
+```
 
 # Miscellaneous
 
@@ -182,4 +188,6 @@ make issues or PR, thanks.
 # Special Thanks
 
 [D3](https://github.com/d3/d3) is excellent library by [Mike Bostock](https://github.com/mbostock). This library is perfectly depends on his works. Thanks a lot Mr. Bostock and D3 contributors!! 
-[D3](https://github.com/d3/d3) and its module is licensed under [ISC](D3_LICENSE). If you use this library, please include both of D3's [ISC license](https://github.com/d3/d3/blob/main/LICENSE) and the license of [this project](https://github.com/g1eng/sdatch/blob/master/LICENSE).
+[D3](https://github.com/d3/d3) and its module is licensed under ISC. If you use this library, please include both of D3's [ISC license](https://github.com/d3/d3/blob/main/LICENSE) and the license of [this project](https://github.com/g1eng/sdatch/blob/master/LICENSE).
+
+If you copy and redistribute bundled library in `dist`, don't forget also to copy [its license](dist/sdatch.licenses.txt).
