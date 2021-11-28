@@ -36,6 +36,12 @@ class Pie extends Layer {
     autoScale(){
     }
 
+    /**
+     * Pie.updateData overrides Layer.updateData and it updates Pie chart state
+     * itself.
+     * FIXME: label cannot be updated after updateData.
+     * @param data
+     */
     updateData(data){
         this.updateDataCore(data)
         this.fig.data(pie()(data))

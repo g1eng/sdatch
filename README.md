@@ -7,7 +7,7 @@
 
 v0.1.1 (**alpha release**), the npm package is available.
 
-The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure on [here](#Develop)).
+The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Develop)).
 
 # Features
 
@@ -146,7 +146,7 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 ### Context-oriented (or developer-friendly)
 
 * Any chart is also a context itself. sdatch should enable user to select the most beneficial context for specific use cases, specifying various rendering effects (e.g. color, positioning, font-family, padding, etc.).
-* Using [sdatch's FigConfig object](src/sdatch.d.ts), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
+* Using [sdatch's FigConfig object](dist/sdatch.d.ts), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
 * Built-in fail-safe rendering (FSR) supports you to render objects with few manual position adjustment. Always make it pretty, for coworkers, designers and for end users.
 
 # Develop
