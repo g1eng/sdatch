@@ -1,4 +1,23 @@
+/**
+ * Visualization class for Line charts.
+ *
+ * Line is one of the most common chart type for generic use cases.
+ * It supports styling, ticks control, automatic size adjustment (FSR) and
+ * dynamic data changes via Line.updateData.
+ *
+ * Dataset (column + data) can be specified in two ways for Line chart.
+ *
+ * (1) specify column and data in single dimensional array
+ *
+ * (2) specify data in two dimensional array
+ *
+ * This class is implemented as a variant of Plot.
+ */
 export class Line extends Layer {
+    /***
+     * @param {FigConfig} conf
+     */
+    constructor(conf: any);
     smooth: boolean;
     autoScale(): void;
     /***

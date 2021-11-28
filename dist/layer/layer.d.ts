@@ -1,18 +1,37 @@
 export default Layer;
+/***
+ * Layer is abstract for chart classs on sdatch. Any chart classes extends this class
+ * and shared core methods implemented within this class.
+ *
+ * The Layer constructor is the default constructor for Layer family classes.
+ * The constructor has common features with other constructors of families
+ * (e.g. Bar, Plot, etc.), but there are several lack of the initialization
+ * process.
+ *
+ * (1) the constructor does not set any scales with autoScale* methods.
+ *
+ * (2) it made simply register data with specified one and does not modify them.
+ *
+ * (3) it does not validate or rewrite layer type by default.
+ *
+ * So users must specify valid type or other options to use `raw` Layer constructor like this:
+ *
+ * ```
+ * let sta = createFigure("sample", 300,300)
+ * sta.addLayer([{
+ *   id: "line-big",
+ *   type: "line",
+ *   column: [1020,1292,1319,1235],
+ *   data: [2008,2005,2001,1994],
+ *   color: {
+ *     fill: "orange"
+ *   },
+   }])
+ * ```
+ *
+ * @param {FigConfig} conf
+ */
 export class Layer {
-    /***
-     * Layer constructor is the default constructor for Layer family classes.
-     * The constructor has common features with other constructors of families
-     * (e.g. Bar, Plot, etc.), but there are several lack of the initialization
-     * process.
-     *
-     * First, the constructor does not set any scales with autoScale* methods.
-     * Second, it made simply register data with specified one and does not modify them.
-     * Third, it does not validate or rewrite layer type by default.
-     * So users must specify valid type or other options to use `raw` Layer constructor.
-     *
-     * @param {FigConfig} conf
-     */
     constructor(conf: any);
     id: any;
     rel: any;
@@ -126,7 +145,7 @@ export class Layer {
         z;
     };
     /***
-     *
+     * setSVG generate core SVG object from the specified FigConfig argument.
      * @param {FigConfig} conf
      */
     setSVG(conf: any): void;
@@ -142,8 +161,8 @@ export class Layer {
     /***
      * setMargin sets margin property for the Layer instance.
      * By default, this method sets 0, 0 margin for top and left.
-     * (But it is immediately modified in the constructor for safe-rendering, avoiding
-     * character clapping out of figure boundary)
+     * (But it is immediately modified in the constructor for fail-safe rendering,
+     * avoiding character clapping out of figure boundary)
      * @param {FigConfig} conf
      */
     setMargin(conf: any): void;
@@ -157,7 +176,7 @@ export class Layer {
         z: any;
     };
     /***
-     * setArea set area property for the Layer instance
+     * setArea sets area property for the Layer instance
      * @param {FigConfig} conf
      */
     setArea(conf: any): void;
@@ -170,19 +189,63 @@ export class Layer {
         y: any;
         z: number;
     };
+    /**
+     * autoScaleY automatically detects the range of Y scale for two dimensional data,
+     * and enables FSR for the layer.
+     */
     autoScaleY(): void;
+    /**
+     * autoScaleXYZ automatically detects the range of X and Y scale for
+     * three dimensional data on the layer, and enables FSR for that.
+     */
     autoScaleXYZ(): void;
+    /**
+     * styleAxe sets style for specified `dim` of the layer with preset axe style object,
+     * specified in `FigConfig.font` and `FigConfig.color.axe`.
+     * @param dim["x"|"y"]
+     */
     styleAxe(dim: any): void;
-    appendAxisX(isDefaultAxe?: boolean): Layer;
-    appendAxisY(isDefaultAxe?: boolean): Layer;
+    /**
+     * [internal] appendAxeX appends X axe for the Layer
+     * @param isDefaultAxe
+     * @returns {Layer}
+     */
+    appendAxeX(isDefaultAxe?: boolean): Layer;
+    /**
+     * [internal] appendAxeY appends Y axe for the Layer
+     * @param isDefaultAxe
+     * @returns {Layer}
+     */
+    appendAxeY(isDefaultAxe?: boolean): Layer;
     /***
      * renderAxe renders axe and registers axe element into Layer.el
      * @param {Boolean} initialize
      */
     renderAxe(initialize?: boolean): Layer;
-    hasData(): any;
-    hasNestedData(): any;
-    hasColumn(): any;
+    /**
+     * check whether the layer has data or not.
+     * With preset data, it returns data length.
+     * Without data, it returns false.
+     * @returns {false|number}
+     */
+    hasData(): false | number;
+    /**
+     * check whether the layer has nested data or not.
+     * If it has data ant its data is nested, it returns true
+     * @returns {Boolean}
+     */
+    hasNestedData(): boolean;
+    /**
+     * check whether it has column or not.
+     * With preset column, it returns column length.
+     * @returns {false|number}
+     */
+    hasColumn(): false | number;
+    /**
+     * check whether the column of the layer is numbered column or not.
+     * With the column is numbered, it returns true.
+     * @returns {Boolean}
+     */
     hasNumberColumn(): boolean;
     /***
      * getNormalizedXYData returns normalized data for two-dimensional data.
@@ -216,6 +279,12 @@ export class Layer {
      * It assumes any data can be mapped to plot and needs two dimensional data.
      */
     setCollision(): void;
+    /**
+     * setCollisionBar sets new collision area for the layer.
+     * It refers preset data and appends calculated collision area for the layer.
+     * It needs single dimensional data.
+     * (Multi-layer collision detection is not supported at now)
+     */
     setCollisionBar(): void;
     /***
      * plot makes plot even if the instance is not a Plot class.
@@ -240,12 +309,31 @@ export class Layer {
      * setFade activate label fading for the layer label.
      */
     setFade(): void;
-    getLabelArray(): any[];
+    /***
+     * getLabelArray returns the array of label string for specified column and data.
+     * Each label is concatenated string of column value and corresponding datum.
+     * (mainly for Pie charts)
+     * @returns {String[]}
+     */
+    getLabelArray(): string[];
+    /**
+     * getLabelMax returns the length of the most longest label in the label array.
+     * (mainly for Pie charts)
+     * @returns {number}
+     */
     getLabelMax(): number;
+    /**
+     * unsetLabel deletes any preset labels for the layer.
+     */
     unsetLabel(): void;
+    /**
+     * getLabelClass returns HTML class string with tagged pattern
+     * @return {String}
+     */
     getLabelClass(): string;
     /***
-     *
+     * setLabel is the label initializer for a chart which DOES NOT have explicitly
+     * disabled label attribute with `FigConfig.label`.
      * @param {Boolean} [fade=false]
      * @return {Layer|Bar|Line|Plot|Pie}
      */
