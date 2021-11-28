@@ -143,7 +143,7 @@ We, sdatch developers, recognize three core values of the project, `CASUALTY`, `
 * easy to embed or bundle, supporting ES6+ `import` and React / Vue3 integration.
 * easy to understand, built on top of ES6+ class abstraction with object-oriented layer model.
 
-### Context-oriented (or developer-friendly)
+### Context-oriented (or developer-friendly) visualization
 
 * Any chart is also a context itself. sdatch should enable user to select the most beneficial context for specific use cases, specifying various rendering effects (e.g. color, positioning, font-family, padding, etc.).
 * Using [sdatch's FigConfig object](dist/sdatch.d.ts), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
@@ -164,9 +164,11 @@ We, sdatch developers, recognize three core values of the project, `CASUALTY`, `
 
 ### Testing on Containers
 
-`docker-compose` is useful to check e2e behavior of bundled script.
+`docker-compose` is useful to check e2e behavior of bundled script. 
 
 ```shell
+yarn install
+yarn install --dev
 docker-compose up -d
 your-browser http://localhost:8080/demo.html
 ```
