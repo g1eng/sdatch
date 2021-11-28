@@ -12,7 +12,7 @@ if (typeof window.fetch !== "function")
  * Visualization class for geological shapes.
  *
  * The constructor for the class Geo needs topojson or geojson file(s)
- * for areal visualization and it can be simply used to implement Chrolopleth.
+ * for spatial visualization and it can be simply used to implement Chrolopleth.
  *
  * ```
  * new Geo({
