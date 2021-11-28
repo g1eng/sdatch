@@ -584,18 +584,18 @@ describe("Layer class (unit tests)", ()=>{
             s = new Layer(conf)
         })
 
-        it("x should be set by appendAxisX", ()=>{
+        it("x should be set by appendAxeX", ()=>{
             expect(document.getElementsByTagName("path").length).to.equal(0)
             s.autoScaleY()
-            s.appendAxisX(true)
+            s.appendAxeX(true)
             expect(document.getElementsByTagName("path").length).to.equal(1)
             expect(document.getElementsByClassName("sdc-axis-x").length).to.equal(1)
         })
 
-        it("y should be set by appendAxisY", ()=>{
+        it("y should be set by appendAxeY", ()=>{
             expect(document.getElementsByTagName("path").length).to.equal(0)
             s.autoScaleY()
-            s.appendAxisY(true)
+            s.appendAxeY(true)
             expect(document.getElementsByTagName("path").length).to.equal(1)
             expect(document.getElementsByClassName("sdc-axis-y").length).to.equal(1)
         })
