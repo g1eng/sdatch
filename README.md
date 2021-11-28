@@ -1,13 +1,13 @@
 [![codecov](https://codecov.io/gh/g1eng/sdatch/branch/master/graph/badge.svg?token=mJQz4bRmsm)](https://codecov.io/gh/g1eng/sdatch)
-[![CircleCI](https://circleci.com/gh/g1eng/sdatch/tree/master.svg?style=svg&circle-token=78cdb6d25075d986cefac72fa3cae880d5824534)](https://circleci.com/gh/g1eng/sdatch/tree/master)
+[![CircleCI](https://circleci.com/gh/g1eng/sdatch/tree/master.svg?style=svg&circle-token=78cdb6d25075d986cefac72fa3cae880d5824534)](https://circleci.com/gh/g1eng/sdatch/tree/master) 
 
-<img src="https://raw.githubusercontent.com/g1eng/sdatch/master/assets/images/logo-tiny.png" /> d3 wrapper for casual data visualization
+<img src="https://raw.githubusercontent.com/g1eng/sdatch/master/assets/images/logo-tiny.png" /> The minimalists' d3 wrapper library
 
 ## Status
 
-v0.1.0 (**alpha release**), the npm package is available.
+v0.1.1 (**alpha release**), the npm package is available.
 
-The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure on [here](#Develop)).
+The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Develop)).
 
 # Features
 
@@ -135,7 +135,7 @@ Nowadays, there are many wrappers for d3 and there are many visualization soluti
 In many conditions, they support much more use cases than we think. 
 It seems to be enough to use existing FLOSS wrapper library or SaaS which visualize our data, for business or personal.
 
-We, sdatch developers, recognize two core values of the project, `CASUALTY` and `CONTEXT-ORIENTED` visualization.
+We, sdatch developers, recognize three core values of the project, `CASUALTY`, `CONTEXT-ORIENTED VISUALIZATION` and `MINIMALISM`.
 
 ### Casualty
 
@@ -143,11 +143,16 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 * easy to embed or bundle, supporting ES6+ `import` and React / Vue3 integration.
 * easy to understand, built on top of ES6+ class abstraction with object-oriented layer model.
 
-### Context-oriented (or developer-friendly)
+### Context-oriented (or developer-friendly) visualization
 
 * Any chart is also a context itself. sdatch should enable user to select the most beneficial context for specific use cases, specifying various rendering effects (e.g. color, positioning, font-family, padding, etc.).
-* Using [sdatch's FigConfig object](src/sdatch.d.ts), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
+* Using [sdatch's FigConfig object](dist/sdatch.d.ts), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
 * Built-in fail-safe rendering (FSR) supports you to render objects with few manual position adjustment. Always make it pretty, for coworkers, designers and for end users.
+
+### Minimalism
+* sdatch does not depend on other than d3-* family and essential small libraries. The libraries not in d3 family are mainly for some polyfill and data format converter.
+* It should not depend on specific frontend libraries excluding d3.
+* In such conditions, this library will be kept as small and simple as possible, ever for any additional functionalities.
 
 # Develop
 
@@ -159,9 +164,11 @@ We, sdatch developers, recognize two core values of the project, `CASUALTY` and 
 
 ### Testing on Containers
 
-`docker-compose` is useful to check e2e behavior of bundled script.
+`docker-compose` is useful to check e2e behavior of bundled script. 
 
 ```shell
+yarn install
+yarn install --dev
 docker-compose up -d
 your-browser http://localhost:8080/demo.html
 ```
@@ -188,6 +195,9 @@ make issues or PR, thanks.
 # Special Thanks
 
 [D3](https://github.com/d3/d3) is excellent library by [Mike Bostock](https://github.com/mbostock). This library is perfectly depends on his works. Thanks a lot Mr. Bostock and D3 contributors!! 
-[D3](https://github.com/d3/d3) and its module is licensed under ISC. If you use this library, please include both of D3's [ISC license](https://github.com/d3/d3/blob/main/LICENSE) and the license of [this project](https://github.com/g1eng/sdatch/blob/master/LICENSE).
 
-If you copy and redistribute bundled library in `dist`, don't forget also to copy [its license](dist/sdatch.licenses.txt).
+# License
+
+Sdatch is licensed under [MIT](LICENSE).
+If you copy and redistribute bundled library in `dist`, don't forget also to copy [licenses](dist/sdatch.licenses.txt) for its dependencies.
+

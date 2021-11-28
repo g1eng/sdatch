@@ -4,7 +4,9 @@ services:
     image: httpd:alpine
     volumes:
       - ./demo:/usr/local/apache2/htdocs
-      - ./dist:/usr/local/apache2/dist
+    k - ./dist:/usr/local/apache2/dist
+      - ./node_modules/bootstrap/dist/css:/usr/local/apache2/css
+      - ./node_modules/bootstrap/dist/js:/usr/local/apache2/js
     ports:
       - "8080:80/tcp"
   tester:

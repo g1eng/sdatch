@@ -11,22 +11,41 @@ class LayerError extends Error{
         super(msg);
     }
 }
-
+/***
+ * Layer is abstract for chart classs on sdatch. Any chart classes extends this class
+ * and shared core methods implemented within this class.
+ *
+ * The Layer constructor is the default constructor for Layer family classes.
+ * The constructor has common features with other constructors of families
+ * (e.g. Bar, Plot, etc.), but there are several lack of the initialization
+ * process.
+ *
+ * (1) the constructor does not set any scales with autoScale* methods.
+ *
+ * (2) it made simply register data with specified one and does not modify them.
+ *
+ * (3) it does not validate or rewrite layer type by default.
+ *
+ * So users must specify valid type or other options to use `raw` Layer constructor like this:
+ *
+ * ```
+ * let sta = createFigure("sample", 300,300)
+ * sta.addLayer([{
+ *   id: "line-big",
+ *   type: "line",
+ *   column: [1020,1292,1319,1235],
+ *   data: [2008,2005,2001,1994],
+ *   color: {
+ *     fill: "orange"
+ *   },
+   }])
+ * ```
+ *
+ * @param {FigConfig} conf
+ */
 class Layer{
 
-    /***
-     * Layer constructor is the default constructor for Layer family classes.
-     * The constructor has common features with other constructors of families
-     * (e.g. Bar, Plot, etc.), but there are several lack of the initialization
-     * process.
-     *
-     * First, the constructor does not set any scales with autoScale* methods.
-     * Second, it made simply register data with specified one and does not modify them.
-     * Third, it does not validate or rewrite layer type by default.
-     * So users must specify valid type or other options to use `raw` Layer constructor.
-     *
-     * @param {FigConfig} conf
-     */
+
     constructor(conf) {
         this.id = conf.id
 
@@ -236,7 +255,7 @@ class Layer{
     }
 
     /***
-     *
+     * setSVG generate core SVG object from the specified FigConfig argument.
      * @param {FigConfig} conf
      */
     setSVG(conf){
@@ -311,8 +330,8 @@ class Layer{
     /***
      * setMargin sets margin property for the Layer instance.
      * By default, this method sets 0, 0 margin for top and left.
-     * (But it is immediately modified in the constructor for safe-rendering, avoiding
-     * character clapping out of figure boundary)
+     * (But it is immediately modified in the constructor for fail-safe rendering,
+     * avoiding character clapping out of figure boundary)
      * @param {FigConfig} conf
      */
     setMargin(conf){
@@ -357,7 +376,7 @@ class Layer{
     }
 
     /***
-     * setArea set area property for the Layer instance
+     * setArea sets area property for the Layer instance
      * @param {FigConfig} conf
      */
     setArea(conf){
@@ -384,6 +403,10 @@ class Layer{
             this.area.z = Math.sqrt(this.area.x * this.area.y) / 5
     }
 
+    /**
+     * autoScaleY automatically detects the range of Y scale for two dimensional data,
+     * and enables FSR for the layer.
+     */
     autoScaleY(){
         let scaleX, scaleY, xBoundary
 
@@ -444,6 +467,10 @@ class Layer{
         }
     }
 
+    /**
+     * autoScaleXYZ automatically detects the range of X and Y scale for
+     * three dimensional data on the layer, and enables FSR for that.
+     */
     autoScaleXYZ() {
         let column
         if (this.column) column = this.column
@@ -557,6 +584,11 @@ class Layer{
         )
     }
 
+    /**
+     * styleAxe sets style for specified `dim` of the layer with preset axe style object,
+     * specified in `FigConfig.font` and `FigConfig.color.axe`.
+     * @param dim["x"|"y"]
+     */
     styleAxe(dim){
         const axeId = this.svg.id + "_" + this.id + "_axe_" + dim
         if (dim === "y")
@@ -577,7 +609,12 @@ class Layer{
             .attr("fill", this.color.axeText)
     }
 
-    appendAxisX (isDefaultAxe = false){
+    /**
+     * [internal] appendAxeX appends X axe for the Layer
+     * @param isDefaultAxe
+     * @returns {Layer}
+     */
+    appendAxeX (isDefaultAxe = false){
         let axeX, ticksValues = [], xOrigin
         if (this.ticks.x.values && this.ticks.x.values.length)
             ticksValues = this.ticks.x.values
@@ -610,7 +647,12 @@ class Layer{
         this.styleAxe("x")
     }
 
-    appendAxisY (isDefaultAxe = false){
+    /**
+     * [internal] appendAxeY appends Y axe for the Layer
+     * @param isDefaultAxe
+     * @returns {Layer}
+     */
+    appendAxeY (isDefaultAxe = false){
         let axeY, xOrigin, yOrigin, ticksValues = []
         if (this.ticks.y.values && this.ticks.y.values.length)
             ticksValues = this.ticks.y.values
@@ -670,12 +712,12 @@ class Layer{
                 || this.axis.right === true
 
         if(initialize && this.axis && hasAxeX )
-            this.appendAxisX()
+            this.appendAxeX()
         if(initialize && this.axis && hasAxeY )
-            this.appendAxisY()
+            this.appendAxeY()
         if(!initialize){
-            this.appendAxisX(true)
-            this.appendAxisY(true)
+            this.appendAxeX(true)
+            this.appendAxeY(true)
         }
         if( (initialize || hasAxeX) && this.label.rotate )
             this.rotate("axe", 90)
@@ -683,20 +725,41 @@ class Layer{
         return this
     }
 
+    /**
+     * check whether the layer has data or not.
+     * With preset data, it returns data length.
+     * Without data, it returns false.
+     * @returns {false|number}
+     */
     hasData(){
         return typeof this.data === "object" && this.data.length
     }
 
+    /**
+     * check whether the layer has nested data or not.
+     * If it has data ant its data is nested, it returns true
+     * @returns {Boolean}
+     */
     hasNestedData(){
         return this.hasData()
             && typeof this.data[0] === "object"
             && this.data[0].length
     }
 
+    /**
+     * check whether it has column or not.
+     * With preset column, it returns column length.
+     * @returns {false|number}
+     */
     hasColumn(){
         return typeof this.column === "object" && this.column.length
     }
 
+    /**
+     * check whether the column of the layer is numbered column or not.
+     * With the column is numbered, it returns true.
+     * @returns {Boolean}
+     */
     hasNumberColumn(){
         return typeof this.column === "object"
             && this.column.length
@@ -790,6 +853,12 @@ class Layer{
             .attr("fill", "rgba(0,0,0,0)")
     }
 
+    /**
+     * setCollisionBar sets new collision area for the layer.
+     * It refers preset data and appends calculated collision area for the layer.
+     * It needs single dimensional data.
+     * (Multi-layer collision detection is not supported at now)
+     */
     setCollisionBar(){
         const scaleX = this.scale.x,
             areaY = this.area.y
@@ -930,8 +999,6 @@ class Layer{
                     "_label_"
                 )
 
-            // console.log("label id ", labelId)
-
             select("#" + labelId)
                 .transition()
                 .duration(200)
@@ -972,6 +1039,12 @@ class Layer{
 
     }
 
+    /***
+     * getLabelArray returns the array of label string for specified column and data.
+     * Each label is concatenated string of column value and corresponding datum.
+     * (mainly for Pie charts)
+     * @returns {String[]}
+     */
     getLabelArray(){
         let label, getLabelDatum, labelArray = []
         if(this.column && !this.data[0].length)     //columned plot is not for the condition
@@ -996,6 +1069,11 @@ class Layer{
         return labelArray
     }
 
+    /**
+     * getLabelMax returns the length of the most longest label in the label array.
+     * (mainly for Pie charts)
+     * @returns {number}
+     */
     getLabelMax(){
         let labelMax=0, labelArray = this.getLabelArray()
 
@@ -1007,6 +1085,9 @@ class Layer{
         return labelMax
     }
 
+    /**
+     * unsetLabel deletes any preset labels for the layer.
+     */
     unsetLabel(){
         this.el.label.remove()
         delete(this.el.label)
@@ -1016,12 +1097,17 @@ class Layer{
         this.el.labelRect = null
     }
 
+    /**
+     * getLabelClass returns HTML class string with tagged pattern
+     * @return {String}
+     */
     getLabelClass(){
         return this.svg.id + "_" + this.id + "_label sdc-label"
     }
 
     /***
-     *
+     * setLabel is the label initializer for a chart which DOES NOT have explicitly
+     * disabled label attribute with `FigConfig.label`.
      * @param {Boolean} [fade=false]
      * @return {Layer|Bar|Line|Plot|Pie}
      */

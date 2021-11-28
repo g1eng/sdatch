@@ -1,6 +1,6 @@
 {
   "name": "sdatch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chart generator based on d3",
   "main": "index.js",
   "author": "Nomura Suzume",
@@ -74,6 +74,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-preset-env": "^1.7.0",
+    "bootstrap": "^5.1.3",
     "c8": "^7.8.0",
     "chai": "^4.3.4",
     "cross-env": "^7.0.3",
