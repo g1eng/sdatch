@@ -146,7 +146,7 @@ We, sdatch developers, recognize three core values of the project, `CASUALTY`, `
 ### Context-oriented (or developer-friendly) visualization
 
 * Any chart is also a context itself. sdatch should enable user to select the most beneficial context for specific use cases, specifying various rendering effects (e.g. color, positioning, font-family, padding, etc.).
-* Using [sdatch's FigConfig object](dist/sdatch.d.ts), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
+* Using [sdatch's FigConfig object](dist/sdatch.d.ts#L187), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
 * Built-in fail-safe rendering (FSR) supports you to render objects with few manual position adjustment. Always make it pretty, for coworkers, designers and for end users.
 
 ### Minimalism
@@ -161,6 +161,10 @@ We, sdatch developers, recognize three core values of the project, `CASUALTY`, `
 * VSCode or WebStorm are recommended for editors.
 * `npm run bundle` to make new bundle in `dist` dir.
 * run `./replace_nyc.sh` before `npm run test`. It replaces native coverage tool from nyc to c8. (dirty hack)
+
+### Testing on localhost
+
+Open `demo/demo.html` in browser.
 
 ### Testing on Containers
 
