@@ -5,52 +5,46 @@
     <title>sdatch demo</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.bundle.min.js"></script>
-    <style>
-        body{ background: #111; }
-        .card-body { text-align: center !important;}
-        .bg-dark {
-            background: #a9a9a9 !important;
-        }
-    </style>
+    <link href="common.css" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid row">
-    <div class="card col-sm-12 col-md-6 col-lg-3 bg-dark">
+    <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
         <div class="card-header">Series of Bar and Line</div>
-        <div id="p1" class="card-body"></div>
+        <div id="p1" class="card-body d-flex justify-content-center"></div>
     </div>
-    <div class="card col-sm-12 col-md-6 col-lg-3 bg-dark">
+    <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
         <div class="card-header">Scatter Plot</div>
-        <div id="p2" class="card-body"></div>
+        <div id="p2" class="card-body d-flex justify-content-center"></div>
     </div>
-    <div class="card col-sm-12 col-md-6 col-lg-3 bg-dark">
+    <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
         <div class="card-header">Series of Curve and Bar</div>
-        <div id="p3" class="card-body"></div>
+        <div id="p3" class="card-body d-flex justify-content-center"></div>
     </div>
-    <div class="card col-sm-12 col-md-6 col-lg-3 bg-dark">
+    <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
         <div class="card-header">Layered Bubble and Line path</div>
-        <div id="p4" class="card-body"></div>
+        <div id="p4" class="card-body d-flex justify-content-center"></div>
     </div>
-    <div class="card col-sm-12 col-md-6 col-lg-3 bg-dark">
+    <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
         <div class="card-header">Curved Area</div>
-        <div id="p5" class="card-body"></div>
+        <div id="p5" class="card-body d-flex justify-content-center"></div>
     </div>
-    <div class="card col-sm-12 col-md-6 col-lg-3 bg-dark">
+    <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
         <div class="card-header">Nested Doughnuts</div>
-        <div id="p6" class="card-body"></div>
+        <div id="p6" class="card-body d-flex justify-content-center"></div>
     </div>
-    <div class="card col-sm-12 col-md-6 col-lg-3 bg-dark">
+    <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
         <div class="card-header">Choropleth on Chiba</div>
-        <div id="p7" class="card-body"></div>
+        <div id="p7" class="card-body d-flex justify-content-center"></div>
     </div>
-    <div class="card col-sm-12 col-md-6 col-lg-3 bg-dark">
+    <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
         <div class="card-header">Sin Curve with Animation</div>
-        <div id="p8" class="card-body"></div>
+        <div id="p8" class="card-body d-flex justify-content-center"></div>
     </div>
 </div>
 </body>
 
-<script type="text/javascript" src="../dist/sdatch.js"></script>
+<script type="text/javascript" src="dist/sdatch.js"></script>
 <script type="text/javascript">
 
     let svg1 = sdatch.getFigureCore("p1", 300, 300)
