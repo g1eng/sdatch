@@ -7,7 +7,7 @@
 
 v0.1.1a (**alpha release**), the npm package is available.
 
-The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Develop)).
+The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Development)).
 
 # Features
 
@@ -128,6 +128,9 @@ class SomeTemplate extends Component {
 export default SomeTemplate
 ```
 
+# Known problems
+
+See [issues](https://github.com/g1eng/sdatch/issues).
 
 # Core concept
 
@@ -146,7 +149,7 @@ We, sdatch developers, recognize three core values of the project, `CASUALTY`, `
 ### Context-oriented (or developer-friendly) visualization
 
 * Any chart is also a context itself. sdatch should enable user to select the most beneficial context for specific use cases, specifying various rendering effects (e.g. color, positioning, font-family, padding, etc.).
-* Using [sdatch's FigConfig object](dist/sdatch.d.ts), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
+* Using [sdatch's FigConfig object](dist/sdatch.d.ts#L187), users take powers to make a figure within a few lines, and a few works to implement it. You can make more time to think about the data.
 * Built-in fail-safe rendering (FSR) supports you to render objects with few manual position adjustment. Always make it pretty, for coworkers, designers and for end users.
 
 ### Minimalism
@@ -154,13 +157,19 @@ We, sdatch developers, recognize three core values of the project, `CASUALTY`, `
 * It should not depend on specific frontend libraries excluding d3.
 * In such conditions, this library will be kept as small and simple as possible, ever for any additional functionalities.
 
-# Develop
+# Development
 
 ### Environment
 
-* VSCode or WebStorm are recommended for editors.
+* Sdatch is under developing on Unix-like OS. macOS or Debian Bullseye are recommended.
+* To develop or test on local, install [Node.js LTS release (13.x)](https://nodejs.org/) and [yarn](https://yarnpkg.com/getting-started/install)
 * `npm run bundle` to make new bundle in `dist` dir.
 * run `./replace_nyc.sh` before `npm run test`. It replaces native coverage tool from nyc to c8. (dirty hack)
+* VSCode, VSCodium or WebStorm are recommended for your editor.
+
+### Testing on localhost
+
+Open `demo/demo.html` in browser.
 
 ### Testing on Containers
 
@@ -184,14 +193,6 @@ All UMD compatible stacks (V8, Spidermonkey, etc.) are supported with babel-load
 
 If you know there is corrupted behavior for the library on any browsers and if you think it should work, please make issues, thanks.
 
-# Known problems
-
-Many. Please wait for days to report all known issues.
-
-# Contact
-
-make issues or PR, thanks.
-
 # Special Thanks
 
 [D3](https://github.com/d3/d3) is excellent library by [Mike Bostock](https://github.com/mbostock). This library is perfectly depends on his works. Thanks a lot Mr. Bostock and D3 contributors!! 
@@ -201,3 +202,8 @@ make issues or PR, thanks.
 Sdatch is licensed under [MIT](LICENSE).
 If you copy and redistribute bundled library in `dist`, don't forget also to copy [licenses](dist/sdatch.licenses.txt) for its dependencies.
 
+# Contact
+
+Make issues or PR, thanks.
+
+Email can be acceptable for me but not recommended, because my response will be too slow to be notified because of the mailbox is flooded with notifications of GitHub and others.

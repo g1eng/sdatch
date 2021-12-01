@@ -1,0 +1,20 @@
+body{
+    background: #111;
+}
+.bg-pale {
+    background: #a9a9a9 !important;
+}
+
+.paradise {
+    background: #0a1050;
+}
+
+.card-body {
+    font-size: 0.9rem;
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+}
+
+td {
+    vertical-align: middle !important;
+}

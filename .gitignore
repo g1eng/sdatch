@@ -5,6 +5,7 @@ coverage
 demo/api
 demo/bootstrap.min.css*
 demo/bootstrap.min.js*
+demo/sdatch.js
 .*.swp
 .*.swo
 *~

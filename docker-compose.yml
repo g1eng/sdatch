@@ -4,12 +4,8 @@ services:
     image: httpd:alpine
     volumes:
       - ./demo:/usr/local/apache2/htdocs
-    k - ./dist:/usr/local/apache2/dist
+      - ./dist/sdatch.js:/usr/local/apache2/htdocs/sdatch.js
       - ./node_modules/bootstrap/dist/css:/usr/local/apache2/css
       - ./node_modules/bootstrap/dist/js:/usr/local/apache2/js
     ports:
       - "8080:80/tcp"
-  tester:
-    image: cimg/node:16.6.0
-    volumes:
-      - ./:/src
