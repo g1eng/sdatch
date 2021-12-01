@@ -1,6 +1,6 @@
 {
   "name": "sdatch",
-  "version": "0.1.1a",
+  "version": "0.1.1b",
   "description": "Chart generator based on d3",
   "main": "index.js",
   "author": "Nomura Suzume",

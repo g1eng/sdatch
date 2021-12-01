@@ -5,7 +5,7 @@
 
 ## Status
 
-v0.1.1a (**alpha release**), the npm package is available.
+v0.1.1b (**alpha release**), the npm package is available.
 
 The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Development)).
 
