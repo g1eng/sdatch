@@ -1128,7 +1128,7 @@ class Layer{
 
         if(scaleX.bandwidth !== undefined){
             getX = (d,i) => (
-                i * scaleX.bandwidth() + this.safe.margin.left + scaleX.bandwidth()/2 - rectWidth / 2
+                i * scaleX.bandwidth() + this.margin.left + this.safe.margin.left + scaleX.bandwidth()/2 - rectWidth / 2
             )
             getY = (d) => {
                 if (d.length) d = d[1]

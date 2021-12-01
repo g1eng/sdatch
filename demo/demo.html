@@ -88,6 +88,7 @@
         },
         margin: {
             top: 50,
+            left: 30,
         },
         animation: false,
         ticks: { x: {inner: true}, y:{ values: [50, 100, 150, 200, 250] }},
@@ -401,19 +402,19 @@
     ]).renderAll()
 
 
-    setTimeout(()=>{
-        let dt = 0.05, count = 1
-        const update = ()=>{
-            sp8.layer.wave.updateData(
-                getWave(count++ * dt)
-            )
-            if(count < 50)
-                setTimeout(
-                    update, 100
-                )
-        }
-        update()
-    }, 5000)
+    // setTimeout(()=>{
+    //     let dt = 0.05, count = 1
+    //     const update = ()=>{
+    //         sp8.layer.wave.updateData(
+    //             getWave(count++ * dt)
+    //         )
+    //         if(count < 50)
+    //             setTimeout(
+    //                 update, 100
+    //             )
+    //     }
+    //     update()
+    // }, 5000)
 
 
 
