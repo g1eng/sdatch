@@ -9,7 +9,7 @@ if (typeof window.fetch !== "function")
     window.fetch = fetchPolyfill
 
 /**
- * Visualization class for geological shapes.
+ * Visualization class for geological shapes. (unstable)
  *
  * The constructor for the class Geo needs topojson or geojson file(s)
  * for spatial visualization and it can be simply used to implement Chrolopleth.

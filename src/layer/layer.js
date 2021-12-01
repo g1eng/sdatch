@@ -421,7 +421,7 @@ class Layer{
 
         // console.log(this.id, this.margin.left, this.safe)
 
-        xBoundary = this.area.x - this.margin.right - this.safe.margin.right
+        xBoundary = this.area.x - this.getLabelWidth() / 2 - this.margin.right - this.safe.margin.right
 
         if (this.column)
             scaleX = scaleBand()
@@ -685,6 +685,8 @@ class Layer{
 
         if(xOrigin === undefined) xOrigin = this.margin.left + this.safe.margin.left
         if(yOrigin === undefined) yOrigin = this.safe.margin.top
+        if(this.type === "bar" && typeof this.scale.x.bandwidth === "function")
+            xOrigin -= this.getLabelWidth() / 2
         if(this.type === "area" && typeof this.scale.x.bandwidth === "function")
             xOrigin += this.scale.x.bandwidth() /2.5
         const axeId = this.svg.id + "_" + this.id + "_axe_y"
@@ -1087,6 +1089,15 @@ class Layer{
     }
 
     /**
+     * getLabelWidth returns the max label width in the layer, based on font size and
+     * the max label length.
+     * @returns {number}
+     */
+    getLabelWidth(){
+        return (this.getLabelMax() + 2) * this.font.size / 2
+    }
+
+    /**
      * unsetLabel deletes any preset labels for the layer.
      */
     unsetLabel(){
@@ -1124,7 +1135,7 @@ class Layer{
             scaleY = this.scale.y,
             getLabelId = (d,i)=> ( this.svg.id + "_" + this.id + "_label_" + i)
 
-        rectWidth = (this.getLabelMax() + 2) * this.font.size / 2
+        rectWidth = this.getLabelWidth()
 
         if(scaleX.bandwidth !== undefined){
             getX = (d,i) => (

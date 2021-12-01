@@ -11,12 +11,14 @@ let column = [],
 for (let i=1;i<=100;i++){
     column.push(i)
     data.push(Math.floor(i / 2 + Math.random() * i))
-    data2.push(Math.floor(500 - i^2 - 5 * i + Math.random() * i^2 * 3))
+    data2.push(1)
 }
 for (let i=101;i<=240;i++){
     column.push(i)
     data.push(Math.floor(i / 2 + Math.random() * i - i * i / 500))
-    data2.push(Math.floor(500 - i^2 - 5 * i + Math.random() * i^2 * 3))
+    data2.push(
+        (i < 120)? -1 : (i<150) ? 3 : (i<200) ? 2 : 0
+    )
 }
 
 // coloring function for arcs

@@ -12,7 +12,7 @@ function getColor(i, len=12){
 }
 
 /**
- * Visualization class for Pie charts.
+ * Visualization class for Pie charts. (unstable)
  *
  * Pie chart is a portion chart based on centroid.
  * The constructor can accept FigConfig object with `radius`, `innerRadius`,
@@ -127,7 +127,7 @@ class Pie extends Layer {
 
     render(){
 
-        const color = (d,i) => interpolateSpectral(i/this.data.length),
+        const color = typeof(this.color.fill) === "function" ? this.color.fill : (d,i) => interpolateSpectral(i/this.data.length),
             stroke = this.color.stroke
 
         this.arcDatum = arc()
@@ -171,10 +171,6 @@ class Pie extends Layer {
                 .attr("fill", color)
                 .attr("stroke", stroke)
         }
-
-
-
-
 
         return this
     }
