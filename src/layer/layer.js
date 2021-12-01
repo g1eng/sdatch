@@ -3,7 +3,7 @@ import {select, selectAll} from "d3-selection";
 import {max, min, range} from "d3-array";
 import {axisBottom, axisLeft, axisRight, axisTop} from "d3-axis";
 import {getFigureCore, getSvgId} from "../lib.js";
-import {active, transition} from "d3-transition";
+import {active} from "d3-transition";
 
 class LayerError extends Error{
     constructor(msg,id) {
@@ -241,6 +241,7 @@ class Layer{
                 z: func(data[2])
             }
         } else if (typeof this.data[0] !== "number") {
+            console.log("DATA: ",this.data)
             throw new LayerError("data must be values")
         } else {
             let minVal
@@ -845,8 +846,8 @@ class Layer{
         this.el.collision = this.el.collision.append("circle")
             .attr("id", (d,i)=> (this.svg.id + "_" + this.id + "_collision_" + i))
             .attr("class", "circle-boundary")
-            .attr("cx", scale.x )
-            .attr("cy", scale.y )
+            .attr("cx", (d)=>(scale.x(d) + this.margin.left) )
+            .attr("cy", (d)=>(scale.y(d) + this.margin.top) )
             .attr("r", "1.5em")
             .attr("stroke", "rgba(0,0,0,0)")
             .attr("stroke-width","1px")
