@@ -1104,9 +1104,11 @@ class Layer{
         this.el.label.remove()
         delete(this.el.label)
         this.el.label = null
-        this.el.labelRect.remove()
-        delete(this.el.labelRect)
-        this.el.labelRect = null
+        if (this.el.labelRect) {
+            this.el.labelRect.remove()
+            delete(this.el.labelRect)
+            this.el.labelRect = null
+        }
     }
 
     /**
