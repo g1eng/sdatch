@@ -316,8 +316,15 @@
         innerRadius: 50,
         radStart: Math.PI / 2,
         radEnd: Math.PI * 3 / 2,
-        clockwise: false
+        clockwise: false,
     }]).renderAll()
+
+    setTimeout(
+        function(){
+            sp6.layer.p62.updateData([20, 20, 20, 20, 20, 20, 10 , 11, 13])
+        },
+        3000
+    )
 
     fetch("https://geoshapes.tanban.org/api/city/list/code/12").then(r => r.json().then((j)=>{
         let uriArray = []
@@ -389,7 +396,7 @@
             area: {
                 y: 200
             },
-            ticks: { x: {inner: true, values: [10,20,30,40,50,60,70,80]}, y:{ inner: true, values: [-2,-1,0,1,2]} },
+            ticks: { x: {inner: true, values: [10,20,30,40,50,60,70,80,90,100]}, y:{ inner: true, values: [-2,-1,0,1,2]} },
             color: {
                 stroke: "red"
             },
@@ -400,19 +407,19 @@
     ]).renderAll()
 
 
-    // setTimeout(()=>{
-    //     let dt = 0.05, count = 1
-    //     const update = ()=>{
-    //         sp8.layer.wave.updateData(
-    //             getWave(count++ * dt)
-    //         )
-    //         if(count < 50)
-    //             setTimeout(
-    //                 update, 100
-    //             )
-    //     }
-    //     update()
-    // }, 5000)
+    setTimeout(()=>{
+        let dt = 0.05, count = 1
+        const update = ()=>{
+            sp8.layer.wave.updateData(
+                getWave(count++ * dt)
+            )
+            if(count < 50)
+                setTimeout(
+                    update, 100
+                )
+        }
+        update()
+    }, 5000)
 
 
 

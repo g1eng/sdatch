@@ -80,9 +80,15 @@ class Pie extends Layer {
                 d.endAngle = d.endAngle * this.radRange + this.radStart
                 return this.arcDatum(d,i)
             })
+        this.el.collision = this.el.pie
+
+        if(this.el.label){
+            this.unsetLabel()
+            this.setLabel()
+        }
     }
 
-    setLabel(){
+    setLabel(fade=true){
         const getLabelId = (d,i)=> ( this.svg.id + "_" + this.id + "_label_" + i),
             rectWidth = (this.getLabelMax() + 2) * this.font.size / 2,
             rectHeight = this.font.size * 2,
@@ -119,7 +125,9 @@ class Pie extends Layer {
             .attr("stroke", "rgba(0,0,0,0)")
             .text( (d,i) => (this.getLabelArray()[i]) )
 
-        this.setFade()
+        if (fade)
+            this.setFade()
+
         this.setTransition()
 
         return this

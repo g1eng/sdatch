@@ -848,7 +848,7 @@ class Layer{
         this.el.collision = this.el.collision.append("circle")
             .attr("id", (d,i)=> (this.svg.id + "_" + this.id + "_collision_" + i))
             .attr("class", "circle-boundary")
-            .attr("cx", (d)=>(scale.x(d) + this.margin.left) )
+            .attr("cx", (d)=>(scale.x(d) + this.margin.left + this.safe.margin.left) )
             .attr("cy", (d)=>(scale.y(d) + this.margin.top) )
             .attr("r", "1.5em")
             .attr("stroke", "rgba(0,0,0,0)")
@@ -898,7 +898,7 @@ class Layer{
             .attr("id", (d,i)=> (this.svg.id + "_" + this.id + "_plot_" + i))
             .attr("class", "plot")
             .attr("cx", scale.x )
-            .attr("cy", scale.y )
+            .attr("cy", (d)=>(scale.y(d) + this.margin.top) )
             .attr("stroke", this.color.fill)
             .attr("stroke-width","1px")
             .attr("fill", this.color.fill)
@@ -1104,9 +1104,11 @@ class Layer{
         this.el.label.remove()
         delete(this.el.label)
         this.el.label = null
-        this.el.labelRect.remove()
-        delete(this.el.labelRect)
-        this.el.labelRect = null
+        if (this.el.labelRect) {
+            this.el.labelRect.remove()
+            delete(this.el.labelRect)
+            this.el.labelRect = null
+        }
     }
 
     /**
