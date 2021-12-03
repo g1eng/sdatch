@@ -5,15 +5,27 @@
 
 ## Status
 
-v0.1.1b (**alpha release**), the npm package is available.
+**alpha release**, the npm package is available.
 
-The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Development)).
+Any static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Development)).
 
 # Features
 
 * Simple Layer constructors (e.g. Bar, Plot, Line, etc.) which needs single config object as the argument.
 * Easy layer generation with sdatch class and related functions such as `createFigure` and `addLayer`.
 * Additional layer operation via method chain syntax, such as `obj.setLabel().setTransition()`.
+
+Sdatch supports 7 layers at now:
+
+| Name | Stability | Test Status |
+| --- | --- | --- |
+| Bar | semi-stable | logical <br>manual UI test |
+| Line | semi-stable | logical <br>manual UI test |
+| Area | semi-stable | logical <br>manual UI test |
+| Plot | semi-stable | logical <br>manual UI test |
+| Bubble | semi-stable | logical <br>  manual UI test |
+| Pie | unstable | uncovered UI bugs detected |
+| Geo | unstable | problems in error handling<br/>  uncoverd functionalities |
 
 See also our [design concept](#core-concept).
 
