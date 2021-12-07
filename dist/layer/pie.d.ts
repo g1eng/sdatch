@@ -1,5 +1,5 @@
 /**
- * Visualization class for Pie charts.
+ * Visualization class for Pie charts. (unstable)
  *
  * Pie chart is a portion chart based on centroid.
  * The constructor can accept FigConfig object with `radius`, `innerRadius`,

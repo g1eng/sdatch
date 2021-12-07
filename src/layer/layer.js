@@ -4,6 +4,7 @@ import {max, min, range} from "d3-array";
 import {axisBottom, axisLeft, axisRight, axisTop} from "d3-axis";
 import {getFigureCore, getSvgId} from "../lib.js";
 import {active} from "d3-transition";
+import {format} from "d3-format";
 
 class LayerError extends Error{
     constructor(msg,layerObj) {
@@ -75,6 +76,7 @@ class Layer{
             if ( conf.round < 0 )
                 throw LayerError("invalid digit for round")
             this.round = Math.pow(10, conf.round)
+            this.roundRaw = conf.round
         }
 
         this.isAnimated = (conf.animation !== false)
@@ -704,16 +706,19 @@ class Layer{
 
         if (!ticksValues || ticksValues.length === 0)
             axeY = axeY.ticks(5)
-        else
+        else {
             axeY = axeY.tickValues(ticksValues)
+            if (this.roundRaw)
+                axeY.tickFormat(format(`.2f`))
+        }
         if (this.ticks.y && this.ticks.y.inner)
-            axeY = axeY.tickSizeInner( -this.area.x + this.safe.margin.left + this.margin.right + this.safe.margin.right)
+            axeY = axeY.tickSizeInner( -this.area.x + this.safe.margin.left )
 
         // console.log(`${this.id}: xOrigin, ${xOrigin}, area ${this.area.x}, margin: ${this.margin.left} , safe: `,this.safe)
 
         if(xOrigin === undefined) xOrigin = this.margin.left + this.safe.margin.left
         if(yOrigin === undefined) yOrigin = this.safe.margin.top
-        if(this.type === "bar" && typeof this.scale.x.bandwidth === "function")
+        if(this.type === "bar" && typeof this.scale.x.bandwidth === "function" && this.axis.right)
             xOrigin -= this.getLabelWidth() / 2
         if(this.type === "area" && typeof this.scale.x.bandwidth === "function")
             xOrigin += this.scale.x.bandwidth() /2.5

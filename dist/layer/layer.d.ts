@@ -1,6 +1,6 @@
 export default Layer;
 /***
- * Layer is abstract for chart classs on sdatch. Any chart classes extends this class
+ * Layer is abstract for chart classes on sdatch. Any chart classes extends this class
  * and shared core methods implemented within this class.
  *
  * The Layer constructor is the default constructor for Layer family classes.
@@ -44,6 +44,8 @@ export class Layer {
         x: any;
         y: any;
     };
+    round: number;
+    roundRaw: any;
     isAnimated: boolean;
     data: any;
     column: any;
@@ -119,6 +121,12 @@ export class Layer {
         };
         range: number;
     };
+    /***
+     * roundDataForEach rounds datasets with specified digit. Any data are assumed as float number data,
+     * and any digits under zero are discarded for the result for each `datum * this.round`.
+     * This procedure should be done on initialization and update of data.
+     */
+    roundDataForEach(): void;
     /***
      * updateDataCore sets data with given argument.
      * The data must have same length with previous one
@@ -323,6 +331,12 @@ export class Layer {
      */
     getLabelMax(): number;
     /**
+     * getLabelWidth returns the max label width in the layer, based on font size and
+     * the max label length.
+     * @returns {number}
+     */
+    getLabelWidth(): number;
+    /**
      * unsetLabel deletes any preset labels for the layer.
      */
     unsetLabel(): void;
@@ -345,5 +359,5 @@ export class Layer {
     setTransition(): Layer | any | any | any;
 }
 export class LayerError extends Error {
-    constructor(msg: any, id: any);
+    constructor(msg: any, layerObj: any);
 }
