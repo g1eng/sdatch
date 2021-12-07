@@ -9,7 +9,7 @@
   "module": "src",
   "scripts": {
     "clean": "yarn --force autoclean && yarn cache clean && rm -rf node_modules dist lib",
-    "bundle": "webpack",
+    "bundle": "webpack && tsc -b",
     "watch": "webpack watch",
     "ts-build": "tsc -b",
     "lint": "eslint ./src",
