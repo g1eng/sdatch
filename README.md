@@ -38,7 +38,9 @@ npm install sdatch
 
 # HowTos
 
-1. Use sdatch Bar constructor on static HTML
+Also see [prettifying guide](docs/prettifying_guide.md) to specify adjustment parameters in `FigConfig` object.
+
+### 1. Use sdatch Bar constructor on static HTML
 
 ```html
 
@@ -69,7 +71,7 @@ npm install sdatch
 </html>
 ```
 
-2. same as previous one, but use addLayer
+### 2. same as previous one, but use addLayer
 
 ```html
 
@@ -95,7 +97,7 @@ npm install sdatch
 </html>
 ```
 
-3. Embed sdatch into React App
+### 3. Embed sdatch into React App
 
 ```jsx
 
@@ -165,6 +167,7 @@ We, sdatch developers, recognize three core values of the project, `CASUALTY`, `
 * Built-in fail-safe rendering (FSR) supports you to render objects with few manual position adjustment. Always make it pretty, for coworkers, designers and for end users.
 
 ### Minimalism
+
 * sdatch does not depend on other than d3-* family and essential small libraries. The libraries not in d3 family are mainly for some polyfill and data format converter.
 * It should not depend on specific frontend libraries excluding d3.
 * In such conditions, this library will be kept as small and simple as possible, ever for any additional functionalities.
