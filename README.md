@@ -38,7 +38,7 @@ npm install sdatch
 
 # HowTos
 
-Also see [prettifying guide](docs/prettifying_guide.md) to specify adjustment parameters in `FigConfig` object.
+Also see [FigConfig guide](docs/figconfig_guide.md) to specify adjustment parameters in `FigConfig` object.
 
 ### 1. Use sdatch Bar constructor on static HTML
 

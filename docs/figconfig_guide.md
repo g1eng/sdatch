@@ -1,4 +1,4 @@
-# Prettifying Guide for Designers/Developers
+# FigConfig Guide for Designers/Developers
 
 This tutorial discusses the control of critical parts of chart, such as ticks and labels.
 
