@@ -6,13 +6,13 @@ import {getFigureCore, getSvgId} from "../lib.js";
 import {active} from "d3-transition";
 
 class LayerError extends Error{
-    constructor(msg,id) {
-        if(id) console.log(id)
+    constructor(msg,layerObj) {
+        if(layerObj) console.log(layerObj)
         super(msg);
     }
 }
 /***
- * Layer is abstract for chart classs on sdatch. Any chart classes extends this class
+ * Layer is abstract for chart classes on sdatch. Any chart classes extends this class
  * and shared core methods implemented within this class.
  *
  * The Layer constructor is the default constructor for Layer family classes.
@@ -69,6 +69,12 @@ class Layer{
         this.scale = {
             x: null,
             y: null
+        }
+
+        if ( typeof conf.round === "number" ){
+            if ( conf.round < 0 )
+                throw LayerError("invalid digit for round")
+            this.round = Math.pow(10, conf.round)
         }
 
         this.isAnimated = (conf.animation !== false)
@@ -166,6 +172,11 @@ class Layer{
                 area: {x: this.area.x, y: this.area.y, z: 0},
                 range:0
             }
+
+            // rounding
+            if (this.round)
+                this.roundDataForEach()
+
             if (typeof conf.safe === "object")
                 Object.assign(this.safe, conf.safe)
             else if (conf.safe !== false) {
@@ -193,6 +204,21 @@ class Layer{
     }
 
     /***
+     * roundDataForEach rounds datasets with specified digit. Any data are assumed as float number data,
+     * and any digits under zero are discarded for the result for each `datum * this.round`.
+     * This procedure should be done on initialization and update of data.
+     */
+    roundDataForEach(){
+        for (let i in this.data) {
+            if (typeof this.data[i] === "object" && this.data[i].length)
+                for (let j in this.data[i])
+                    this.data[i][j] = Math.floor(this.data[i][j] * this.round) / this.round
+            else if (typeof this.data[i] === "number")
+                this.data[i] = Math.floor(this.data[i] * this.round) / this.round
+        }
+    }
+
+    /***
      * updateDataCore sets data with given argument.
      * The data must have same length with previous one
      * @param data - data to assign to Layer.data
@@ -203,6 +229,8 @@ class Layer{
         if(this.data.length !== data.length)
             throw new LayerError("data length must be same as previous one")
         this.data = data
+        if(this.round)
+            this.roundDataForEach()
     }
 
     /***

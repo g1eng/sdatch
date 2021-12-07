@@ -83,25 +83,25 @@
             body: svg1
         },
         area: {
+            x: 275,
             y: 150,
         },
         margin: {
             top: 50,
         },
         animation: false,
-        ticks: { x: {inner: true}, y:{ values: [50, 100, 150, 200, 250] }},
+        ticks: { y:{ values: [50, 100, 150, 200, 250] }},
         axe: {
             x: true,
             y: true,
         },
         color: {
             fill: function(d){
-                return `rgb(${d*2},${d*0.5},${200-d})`
+                return `rgb(${30 + d*1.25},${d*0.5},${200-d})`
             },
             axe: "#111",
             axeText: "#002"
         },
-        font: {size: 12},
         label: { rotate: true},
         fade: {
             area: {
@@ -390,7 +390,7 @@
                 y: [-2,2]
             },
             margin: {
-                left: 30,
+                left: 60,
                 top: 30,
             },
             area: {
@@ -400,6 +400,7 @@
             color: {
                 stroke: "red"
             },
+            round: 5,
             axe: { x:true, y: true},
             plot: false,
             safe: false,
@@ -411,19 +412,15 @@
         let dt = 0.05, count = 1
         const update = ()=>{
             sp8.layer.wave.updateData(
-                getWave(count++ * dt)
+                getWave((count+=5) * dt)
             )
-            if(count < 50)
+            if(count < 100)
                 setTimeout(
                     update, 100
                 )
         }
         update()
-    }, 5000)
-
-
-
+    }, 3000)
 
 </script>
 </html>
-
