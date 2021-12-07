@@ -9,7 +9,7 @@
   "module": "src",
   "scripts": {
     "clean": "yarn --force autoclean && yarn cache clean && rm -rf node_modules dist lib",
-    "bundle": "webpack",
+    "bundle": "webpack && tsc -b",
     "watch": "webpack watch",
     "ts-build": "tsc -b",
     "lint": "eslint ./src",
@@ -39,6 +39,7 @@
     "d3-dsv": "^3.0.1",
     "d3-ease": "^3.0.1",
     "d3-fetch": "^3.0.1",
+    "d3-format": "^3.1.0",
     "d3-geo": "^3.0.1",
     "d3-geo-projection": "^4.0.0",
     "d3-path": "^3.0.1",

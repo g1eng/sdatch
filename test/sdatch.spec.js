@@ -124,7 +124,7 @@ describe('sdatch', () => {
 
 
     describe("closure addLayer", ()=>{
-        it("can add new layer for the instance", ()=>{
+        it("should add new layer for the instance", ()=>{
             const data = [1,23,456]
             s.addLayer({
                 id: "barsample",
@@ -178,7 +178,7 @@ describe('sdatch', () => {
 
     describe("closure addBar", ()=>{
 
-        it("can add new Bar layer for the instance", ()=>{
+        it("should add new Bar layer for the instance", ()=>{
             const data = [1,2,3,4,5]
             s.addBar({
                 id: "test4",
@@ -190,7 +190,7 @@ describe('sdatch', () => {
             expect(s.layer.test4.type).to.equal("bar")
         })
 
-        it("can generate several Bar layer for the instance", ()=>{
+        it("should generate several Bar layer for the instance", ()=>{
             const data = [1,2,3,4,5]
             const data2 = [2,2,5,5,5]
             s.addBar([
@@ -305,17 +305,17 @@ describe('sdatch', () => {
             expect(s.rel[0][0]).to.equal("one")
             expect(s.rel[0][1]).to.equal("two")
         })
-        it("can be get by name with getRelation", ()=>{
+        it("should be get by name with getRelation", ()=>{
             s.makeRelation(configs)
             const rel = s.getRelation("two")
             expect(rel[0]).to.equal("one")
             expect(rel[1]).to.equal("two")
         })
-        it("can be result null with nonexistent layer name with getRelation", ()=>{
+        it("should be null with nonexistent layer name with getRelation", ()=>{
             s.makeRelation(configs)
             expect(s.getRelation("tooth")).to.be.null
         })
-        it("is not exist, then layers cannot be arranged", ()=>{
+        it("is not exist, then layers should not be adjusted", ()=>{
             delete(configs[1].rel)
             s.addLayer(configs)
             expect(s.layer.one.area.x).not.to.equal(s.layer.two.area.x)
@@ -327,7 +327,7 @@ describe('sdatch', () => {
             miniMarginSafe = s.layer.one.safe.margin.left
             miniArea = s.layer.two.area.x
         })
-        it("can be used to arrange layers as a layer group", ()=>{
+        it("should be used to adjust layers as a layer group", ()=>{
             s.makeRelation(configs)
             s.addLayer(configs)
             // s.arrangeLayer("two") //optional
@@ -335,7 +335,7 @@ describe('sdatch', () => {
             expect(s.layer.one.margin.left).to.equal(s.layer.two.margin.left)
             expect(s.layer.one.safe.margin.left).to.equal(s.layer.two.safe.margin.left)
         })
-        it("can be used to arrange layers with bigger FSR parameters", ()=>{
+        it("should be used to adjust layers with bigger FSR parameters", ()=>{
             s.makeRelation(configs)
             s.addLayer(configs)
             expect(s.layer.one.area.x).to.equal(miniArea)
@@ -344,7 +344,7 @@ describe('sdatch', () => {
             expect(s.layer.two.safe.margin.left).to.be.greaterThan(miniMarginSafe)
             expect(s.layer.one.safe.margin.left).to.equal(s.layer.two.safe.margin.left)
         })
-        it("also can be used to arrange layers with bigger FSR parameters as an array", ()=>{
+        it("also should be used to adjust layers with bigger FSR parameters as an array", ()=>{
             configs[1].rel = ["one","three"]
             s.makeRelation(configs)
             s.addLayer(configs)

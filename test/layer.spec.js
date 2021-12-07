@@ -71,7 +71,7 @@ describe("Layer class (unit tests)", ()=>{
             }
         })
 
-        it("can generate a new instance with specified SVG properties", ()=>{
+        it("should generate a new instance with specified SVG properties", ()=>{
             let s = new Layer(conf)
             expect(s.id).to.equal(conf.id)
             expect(s.type).to.equal(conf.type)
@@ -111,7 +111,7 @@ describe("Layer class (unit tests)", ()=>{
             }
         })
 
-        it("can generate a new instance with specified SVG properties without body but width and height", ()=>{
+        it("should generate a new instance with specified SVG properties without body but width and height", ()=>{
             conf.svg.width = 100
             conf.svg.height = 120
             let s = new Layer(conf)
@@ -125,7 +125,7 @@ describe("Layer class (unit tests)", ()=>{
             expect(s.svg.height).to.equal(120)
         })
 
-        it("can generate a new instance with valid svg object having id for exist SVG element", ()=>{
+        it("should generate a new instance with valid svg object having id for exist SVG element", ()=>{
             delete(conf.svg.target)
             getFigureCore("test1",100,100)
             conf.svg.id = "sdatch_test1"
@@ -141,7 +141,7 @@ describe("Layer class (unit tests)", ()=>{
             }
         })
 
-        it("can generate a new instance with valid svg object having SVG selection", ()=>{
+        it("should generate a new instance with valid svg object having SVG selection", ()=>{
             delete(conf.svg.target)
             conf.svg.body = getFigureCore("test1",100,100)
             try{
@@ -156,7 +156,7 @@ describe("Layer class (unit tests)", ()=>{
             }
         })
 
-        it("can generate a new instance with svg property as a string, for the single layer", ()=>{
+        it("should generate a new instance with svg property as a string, for the single layer", ()=>{
             conf.svg = "test1"
             let s = new Layer(conf)
             expect(s.id).to.equal(conf.id)
@@ -213,7 +213,7 @@ describe("Layer class (unit tests)", ()=>{
                 expect(true).to.equal(true)
             }
         })
-        it("can set same number with the argument number ", ()=>{
+        it("should set same number with the argument number ", ()=>{
             s.setMargin({margin: 500})
             expect(s.margin.top).to.equal(500)
             expect(s.margin.left).to.equal(500)
@@ -232,11 +232,56 @@ describe("Layer class (unit tests)", ()=>{
                 }
             })
         })
-        it("can set area with area config object", ()=>{
+        it("should set area with area config object", ()=>{
             const a = {area: {x:345, y:789}}
             s.setArea(a)
             expect(s.area.x).to.equal(a.area.x)
             expect(s.area.y).to.equal(a.area.y)
+        })
+    })
+
+    describe("roundDataForEach", ()=>{
+        let s
+        beforeEach(()=>{
+            conf = {
+                id: "test1",
+                data: [1.111111,2.2222222222,3.3333333333333333, 0.0001000],
+                type: "plain",
+                svg: {
+                    id: "test1",
+                    body: {},
+                    dummy: true
+                },
+                round: 2
+            }
+            s = new Layer(conf)
+        })
+        it("should format values with specified length", ()=>{
+            s.roundDataForEach()
+            expect(s.data[0]).to.equal(1.11)
+            expect(s.data[1]).to.equal(2.22)
+            expect(s.data[2]).to.equal(3.33)
+            expect(s.data[3]).to.equal(0)
+        })
+
+        it("should cut off values under zero when zero is specified", ()=>{
+            conf.round = 0
+            s = new Layer(conf)
+            s.roundDataForEach()
+            expect(s.data[0]).to.equal(1)
+            expect(s.data[1]).to.equal(2)
+            expect(s.data[2]).to.equal(3)
+            expect(s.data[3]).to.equal(0)
+        })
+
+        it("should abort with negative value", ()=>{
+            conf.round = -1
+            try {
+                s = new Layer(conf)
+                expect(true).to.equal(false)
+            } catch (e) {
+                expect(true).to.equal(true)
+            }
         })
     })
 
@@ -255,7 +300,7 @@ describe("Layer class (unit tests)", ()=>{
             }
             s = new Layer(conf)
         })
-        it("can assign valid data without any errors", ()=>{
+        it("should assign valid data without any errors", ()=>{
             s.updateDataCore([4,5,6])
         })
         it("should fail with a data which has different length with previous data", ()=>{
@@ -281,17 +326,17 @@ describe("Layer class (unit tests)", ()=>{
                 }
             })
         })
-        it("can get data with max values", ()=>{
+        it("should get data with max values", ()=>{
             const d = s.getDataWith(max)
             expect(d.x).equal(3)
             expect(d.y).equal(300)
         })
-        it("can get data with min values", ()=>{
+        it("should get data with min values", ()=>{
             const d = s.getDataWith(min)
             expect(d.x).equal(1)
             expect(d.y).equal(0.1)
         })
-        it("cannot accept other functions", ()=>{
+        it("should not accept other functions", ()=>{
             try {
                 s.getDataWith(function(){ return false })
                 expect(true).to.equal(false)
@@ -315,7 +360,7 @@ describe("Layer class (unit tests)", ()=>{
             }
             s = new Layer(conf)
         })
-        it("can set x (bandscale) and y scale with a data array",()=>{
+        it("should set x (bandscale) and y scale with a data array",()=>{
             expect(s.scale.x).to.be.null
             expect(s.scale.y).to.be.null
             s.autoScaleY()
@@ -323,7 +368,7 @@ describe("Layer class (unit tests)", ()=>{
             expect(s.scale.x.bandwidth).to.not.be.undefined
             expect(s.scale.y).not.to.be.null
         })
-        it("can set scales, even with a column",()=>{
+        it("should set scales, even with a column",()=>{
             s.column = ["a","b","c"]
             expect(s.scale.x).to.be.null
             expect(s.scale.y).to.be.null
@@ -332,7 +377,7 @@ describe("Layer class (unit tests)", ()=>{
             expect(s.scale.x.bandwidth).to.not.be.undefined
             expect(s.scale.y).not.to.be.null
         })
-        it("can set scales, even with a broken column but a valid data",()=>{
+        it("should set scales, even with a broken column but a valid data",()=>{
             s.column = ["a","b"]
             expect(s.scale.x).to.be.null
             expect(s.scale.y).to.be.null
@@ -341,7 +386,7 @@ describe("Layer class (unit tests)", ()=>{
             expect(s.scale.x.bandwidth).to.not.be.undefined
             expect(s.scale.y).not.to.be.null
         })
-        it("cannot set scales with an invalid data", ()=>{
+        it("should not set scales with an invalid data", ()=>{
             try {
                 s.data = ["t","h","p","r",123]
                 s.autoScaleY()
@@ -368,10 +413,10 @@ describe("Layer class (unit tests)", ()=>{
             }
             s = new Layer(conf)
         })
-        it("can generate scale x and y with a valid column and data set",()=>{
+        it("should generate scale x and y with a valid column and data set",()=>{
             s.autoScaleXYZ()
         })
-        it("cannot set scales without a column", ()=>{
+        it("should not set scales without a column", ()=>{
             try {
                 delete(s.column)
                 s.autoScaleXYZ()
@@ -380,7 +425,7 @@ describe("Layer class (unit tests)", ()=>{
                 expect(true).to.equal(true)
             }
         })
-        it("cannot set scales with a column of strings", ()=>{
+        it("should not set scales with a column of strings", ()=>{
             try {
                 s.column = ["a","b","c"]
                 s.autoScaleXYZ()
@@ -389,7 +434,7 @@ describe("Layer class (unit tests)", ()=>{
                 expect(true).to.equal(true)
             }
         })
-        it("cannot set scales with unmatched column length", ()=>{
+        it("should not set scales with unmatched column length", ()=>{
             try {
                 s.column = [1000, 2000]
                 s.autoScaleXYZ()
@@ -415,7 +460,7 @@ describe("Layer class (unit tests)", ()=>{
             }
             s = new Layer(conf)
         })
-        it("cannot set collision area without any preset scales", ()=>{
+        it("should not set collision area without any preset scales", ()=>{
             try {
                 s.setCollision()
                 expect(true).to.equal(false)
@@ -423,7 +468,7 @@ describe("Layer class (unit tests)", ()=>{
                 expect(true).to.equal(true)
             }
         })
-        it("cannot set collision area without any valid svg core", ()=>{
+        it("should not set collision area without any valid svg core", ()=>{
             delete(s.svg.body)
             try {
                 s.autoScaleY()
@@ -433,11 +478,11 @@ describe("Layer class (unit tests)", ()=>{
                 expect(true).to.equal(true)
             }
         })
-        it("can set collision area with circle element and with scaleBand", ()=>{
+        it("should set collision area with circle element and with scaleBand", ()=>{
             s.autoScaleY()
             s.setCollision()
         })
-        it("can set collision area with circle element and with scaleLinear", ()=>{
+        it("should set collision area with circle element and with scaleLinear", ()=>{
             s.column = ["a","b","c"]
             s.autoScaleXYZ()
             s.setCollision()
@@ -458,7 +503,7 @@ describe("Layer class (unit tests)", ()=>{
             }
             s = new Layer(conf)
         })
-        it("cannot set collision area without any preset scales", ()=>{
+        it("should not set collision area without any preset scales", ()=>{
             try{
                 s.setCollisionBar()
                 expect(true).to.equal(false)
@@ -466,7 +511,7 @@ describe("Layer class (unit tests)", ()=>{
                 expect(true).to.equal(true)
             }
         })
-        it("cannot set collision area without any valid preset svg core", ()=>{
+        it("should not set collision area without any valid preset svg core", ()=>{
             delete(s.svg.body)
             try{
                 s.autoScaleY()
@@ -476,7 +521,7 @@ describe("Layer class (unit tests)", ()=>{
                 expect(true).to.equal(true)
             }
         })
-        it("can set collision area with rect elements", ()=>{
+        it("should set collision area with rect elements", ()=>{
             s.autoScaleY()
             s.setCollisionBar()
         })
@@ -498,7 +543,7 @@ describe("Layer class (unit tests)", ()=>{
             s = new Layer(conf)
         })
 
-        it("can be dumped with getLabelArray", ()=>{
+        it("should be dumped with getLabelArray", ()=>{
             const labels = s.getLabelArray()
             expect(labels.length).not.to.be.undefined
             expect(labels.length).equal(s.data.length)
@@ -506,7 +551,7 @@ describe("Layer class (unit tests)", ()=>{
                 expect(labels[i]).to.equal(s.data[i])
         })
 
-        it("can be formatted and extracted with getLabelArray with column and data", ()=>{
+        it("should be formatted and extracted with getLabelArray with column and data", ()=>{
             s.column = ["a","b","c"]
 
             const labels = s.getLabelArray(),
@@ -515,7 +560,7 @@ describe("Layer class (unit tests)", ()=>{
                 expect(labels[i]).to.equal(comp[i])
         })
 
-        it("can be formatted and extracted with getLabelArray with column and nested data", ()=>{
+        it("should be formatted and extracted with getLabelArray with column and nested data", ()=>{
             s.column = ["a","b","c"]
             s.data = [[1,2],[3,4],[5,6]]
             s.autoScaleXYZ()
@@ -559,7 +604,7 @@ describe("Layer class (unit tests)", ()=>{
             expect(s.el.labelRect).to.be.null
         })
 
-        it("fade-in and fade-out animation can be set by setFade", ()=>{
+        it("fade-in and fade-out animation should be set by setFade", ()=>{
             expect(s.fade.label.in).to.be.null
             expect(s.fade.label.out).to.be.null
             s.setFade()

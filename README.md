@@ -5,15 +5,27 @@
 
 ## Status
 
-v0.1.1d (**alpha release**), the npm package is available.
+**alpha release**, the npm package is available.
 
-The static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Development)).
+Any static bundle file is not supplied at now. If you want to get a prebuilt static script as `sdatch.js`, copy it from `dist` directory or bundle it on your machine (follow the procedure [here](#Development)).
 
 # Features
 
 * Simple Layer constructors (e.g. Bar, Plot, Line, etc.) which needs single config object as the argument.
 * Easy layer generation with sdatch class and related functions such as `createFigure` and `addLayer`.
 * Additional layer operation via method chain syntax, such as `obj.setLabel().setTransition()`.
+
+Sdatch supports 7 layers at now:
+
+| Name | Stability | Test Status |
+| --- | --- | --- |
+| Bar | semi-stable | logical <br>manual UI test |
+| Line | semi-stable | logical <br>manual UI test |
+| Area | semi-stable | logical <br>manual UI test |
+| Plot | semi-stable | logical <br>manual UI test |
+| Bubble | semi-stable | logical <br>  manual UI test |
+| Pie | unstable | uncovered UI bugs detected |
+| Geo | unstable | uncovered functionalities |
 
 See also our [design concept](#core-concept).
 
@@ -26,7 +38,9 @@ npm install sdatch
 
 # HowTos
 
-1. Use sdatch Bar constructor on static HTML
+Also see [FigConfig guide](docs/figconfig_guide.md) to specify adjustment parameters in `FigConfig` object.
+
+### 1. Use sdatch Bar constructor on static HTML
 
 ```html
 
@@ -57,7 +71,7 @@ npm install sdatch
 </html>
 ```
 
-2. same as previous one, but use addLayer
+### 2. same as previous one, but use addLayer
 
 ```html
 
@@ -83,7 +97,7 @@ npm install sdatch
 </html>
 ```
 
-3. Embed sdatch into React App
+### 3. Embed sdatch into React App
 
 ```jsx
 
@@ -153,6 +167,7 @@ We, sdatch developers, recognize three core values of the project, `CASUALTY`, `
 * Built-in fail-safe rendering (FSR) supports you to render objects with few manual position adjustment. Always make it pretty, for coworkers, designers and for end users.
 
 ### Minimalism
+
 * sdatch does not depend on other than d3-* family and essential small libraries. The libraries not in d3 family are mainly for some polyfill and data format converter.
 * It should not depend on specific frontend libraries excluding d3.
 * In such conditions, this library will be kept as small and simple as possible, ever for any additional functionalities.
