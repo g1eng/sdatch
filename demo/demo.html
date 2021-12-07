@@ -38,7 +38,7 @@
         <div id="p7" class="card-body d-flex justify-content-center"></div>
     </div>
     <div class="card col-sm-12 col-md-6 col-lg-3 bg-pale">
-        <div class="card-header">Sin Curve with Animation</div>
+        <div class="card-header">Synthesized Wave with Animation</div>
         <div id="p8" class="card-body d-flex justify-content-center"></div>
     </div>
 </div>
@@ -380,7 +380,7 @@
         data = []
 
         for(let i=0;i<100;i++)
-            data.push(Math.sin(radStart + ds * i) * 3.35 + 2.5)
+            data.push(Math.cos(radStart + ds * i * 2.2) * Math.sin(radStart + ds * i) * 3.35 + 2.5)
             return data
     }
     sp8.addLayer([
@@ -413,13 +413,13 @@
             sp8.layer.wave.updateData(
                 getWave((count+=5) * dt)
             )
-            if(count < 100)
+            if(count < 500)
                 setTimeout(
                     update, 100
                 )
         }
         update()
-    }, 3000)
+    }, 6000)
 
 </script>
 </html>

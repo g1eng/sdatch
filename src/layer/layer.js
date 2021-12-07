@@ -874,6 +874,9 @@ class Layer{
     setCollision(){
         let scale = this.getScaleForData()
 
+        const colSize = 20
+        const slideWidth = (this.type === "area") ? colSize * 1.5 : 0
+
         this.el.collision = this.svg.body.selectAll("svg")
             .append("g")
             .data(this.getNormalizedXYData())
@@ -881,9 +884,9 @@ class Layer{
         this.el.collision = this.el.collision.append("circle")
             .attr("id", (d,i)=> (this.svg.id + "_" + this.id + "_collision_" + i))
             .attr("class", "circle-boundary")
-            .attr("cx", (d)=>(scale.x(d) + this.margin.left + this.safe.margin.left) )
+            .attr("cx", (d)=>(scale.x(d) + this.margin.left + this.safe.margin.left - slideWidth) )
             .attr("cy", (d)=>(scale.y(d) + this.margin.top) )
-            .attr("r", "1.5em")
+            .attr("r", colSize)
             .attr("stroke", "rgba(0,0,0,0)")
             .attr("stroke-width","1px")
             .attr("fill", "rgba(0,0,0,0)")

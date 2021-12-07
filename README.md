@@ -25,7 +25,7 @@ Sdatch supports 7 layers at now:
 | Plot | semi-stable | logical <br>manual UI test |
 | Bubble | semi-stable | logical <br>  manual UI test |
 | Pie | unstable | uncovered UI bugs detected |
-| Geo | unstable | problems in error handling<br/>  uncoverd functionalities |
+| Geo | unstable | uncovered functionalities |
 
 See also our [design concept](#core-concept).
 
