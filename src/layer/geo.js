@@ -110,7 +110,7 @@ class Geo extends Layer {
                         this.src[this.getSeqWithId(e)].features[0].properties,
                         dummyFeatures.properties
                     )
-                console.log(e, "datum", dummyFeatures.properties.datum)
+                // console.log(e, "datum", dummyFeatures.properties.datum)
                 // console.log("color", this.color.fill(dummyFeatures))
 
                 if (typeof this.color.fill === "function")

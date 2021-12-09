@@ -332,7 +332,7 @@
     fetch("https://geoshapes.tanban.org/api/city/list/code/12").then(r => r.json().then((j)=>{
         let uriArray = []
         for(let i in j){
-            if(!(i<12200 && i>12100))
+            if( i>=12200 || i<=12100 )
                 uriArray.push("https://geoshapes.tanban.org/api/topojson/" + i + ".topojson")
         }
 

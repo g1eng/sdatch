@@ -451,7 +451,14 @@ class Layer{
 
         // console.log(this.id, this.margin.left, this.safe)
 
-        xBoundary = this.area.x - this.getLabelWidth() / 2 - this.margin.right - this.safe.margin.right
+        // modification for issue #22
+        // NOTE: this is not a better way to fix margin corruption for related layers, reported in #22
+        //   Remove its cause in depth (maybe in design-level on FSR), if you can.
+        if (this.rel)
+            xBoundary = this.area.x - this.margin.right - this.safe.margin.right
+        else
+            xBoundary = this.area.x - this.getLabelWidth() / 2 - this.margin.right - this.safe.margin.right
+
 
         if (this.column)
             scaleX = scaleBand()
@@ -718,8 +725,6 @@ class Layer{
 
         if(xOrigin === undefined) xOrigin = this.margin.left + this.safe.margin.left
         if(yOrigin === undefined) yOrigin = this.safe.margin.top
-        if(this.type === "bar" && typeof this.scale.x.bandwidth === "function" && this.axis.right)
-            xOrigin -= this.getLabelWidth() / 2
         if(this.type === "area" && typeof this.scale.x.bandwidth === "function")
             xOrigin += this.scale.x.bandwidth() /2.5
         const axeId = this.svg.id + "_" + this.id + "_axe_y"
@@ -1257,7 +1262,7 @@ class Layer{
                 fadeOut.push(this.fade[i].out)
             }
         }
-        if (!this.el.collision && !this.el.collisionBar)
+        if (this.type !== "geo" && !this.el.collision && !this.el.collisionBar)
             throw new LayerError("fade label must be set with collision areas", this.id)
 
         const setCollisionTransition = (target)=> (
