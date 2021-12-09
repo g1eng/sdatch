@@ -1257,7 +1257,7 @@ class Layer{
                 fadeOut.push(this.fade[i].out)
             }
         }
-        if (!this.el.collision && !this.el.collisionBar)
+        if (this.type !== "geo" && !this.el.collision && !this.el.collisionBar)
             throw new LayerError("fade label must be set with collision areas", this.id)
 
         const setCollisionTransition = (target)=> (
